@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hena Katering</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -15,7 +16,8 @@
         <?php
         $pages_dir = 'src/pages';
         $pages = scandir($pages_dir, 0);
-        echo '<a href="src/pages/homepage.php">To Homepage</a>';
+        echo '<a href="src/pages/login.php">To Login Page</a></br>';
+        echo '<a href="src/pages/register.php">To Register Page</a>';
         if (!empty($_GET['p'])) {
             $pages = scandir($pages_dir, 0);
             unset($pages[0], $pages[1]);

@@ -1,0 +1,199 @@
+@import url("https://rsms.me/inter/inter.css");
+
+:root {
+  --desktop-font-size: 16px;
+  --mobile-font-size: 18px;
+  --green: hsl(155, 69%, 40%);
+  --darker-green: hsl(155, 69%, 30%);
+}
+
+html {
+  font-family: "Inter", sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+.container {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  /* Sign In Background Pattern */
+  background-color: #ffffff;
+  background-image: radial-gradient(circle at center center, #fcfcfc, #ffffff),
+    repeating-radial-gradient(
+      circle at center center,
+      #fcfcfc,
+      #fcfcfc,
+      21px,
+      transparent 42px,
+      transparent 21px
+    );
+  background-blend-mode: multiply;
+}
+
+.sign-in-container {
+  max-width: 350px;
+  background-color: white;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(194, 194, 194, 0.2);
+  border-radius: 5px;
+}
+
+.logo {
+  width: 100%;
+  max-width: 28px;
+}
+
+.sign-in-heading {
+  margin: 1rem 0 3rem 0;
+}
+
+.password-section {
+  margin-bottom: 2rem;
+}
+
+.sign-up {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sign-up a {
+  text-decoration: none;
+  color: var(--green);
+}
+
+button {
+  background-color: var(--green);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 22px; /* fallback */
+  font-size: var(--mobile-font-size);
+  font-weight: 500;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background-color: var(--darker-green);
+}
+
+button#signin {
+  width: 100%;
+}
+
+button#toggle-password {
+  background: none;
+  border: none;
+  color: var(--green);
+  outline: none;
+  cursor: pointer;
+  font-weight: 300;
+  padding: 0;
+  /* Display at the top right of the password section */
+  position: absolute;
+  top: -1px;
+  right: 8px;
+}
+
+button#toggle-password:focus {
+  border: 1px solid black;
+  top: -1px;
+  right: 7px;
+}
+
+div#password-constraints {
+  margin: 10px 0 0 0;
+  font-size: 16px;
+  color: darkgrey;
+}
+
+form {
+  margin-bottom: 2rem;
+}
+
+input {
+  border: 1px solid rgb(227, 227, 227);
+  background-color: rgb(247, 247, 247);
+  border-radius: 3px;
+  font-size: 22px; /* fallback */
+  font-size: var(--mobile-font-size);
+  padding: 10px;
+  width: 100%; /* fallback */
+  width: calc(100% - 22px); /* full width minus padding */
+}
+
+input[type="email"]:not(:focus):invalid,
+input[type="password"]:not(:focus):invalid {
+  color: red;
+  outline-color: red;
+}
+
+label {
+  display: block;
+  font-size: 20px;
+  font-size: var(--mobile-font-size);
+  font-weight: 500;
+  margin: 0 0 10px 0;
+}
+
+form section {
+  margin: 0 0 20px 0;
+  position: relative; /* for password toggle positioning */
+}
+
+p {
+  font-size: 22px; /* fallback */
+  font-size: var(--mobile-font-size);
+}
+
+@media (min-width: 450px) {
+  button {
+    font-size: 14px; /* fallback */
+    font-size: var(--desktop-font-size);
+  }
+
+  div#password-constraints {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 14px; /* fallback */
+    font-size: var(--desktop-font-size);
+  }
+
+  label {
+    font-size: 14px; /* fallback */
+    font-size: var(--desktop-font-size);
+  }
+
+  p {
+    font-size: 14px; /* fallback */
+    font-size: var(--desktop-font-size);
+  }
+}
+
+@media (max-width: 450px) {
+  h2 {
+    font-size: 2rem;
+  }
+
+  .container {
+    display: flex;
+  }
+
+  .sign-in-container {
+    max-width: 100%;
+  }
+}

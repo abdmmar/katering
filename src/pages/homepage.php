@@ -6,6 +6,5 @@
     <title>Hena Catering</title>
 </head>
 <body>
-    Hallo
 </body>
 </html>
