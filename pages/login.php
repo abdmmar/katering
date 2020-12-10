@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,43 +8,25 @@
   <link rel="shortcut icon" href="../logo.png" type="image/x-icon" />
   <link rel="stylesheet" href="../style/style.css">
 </head>
+
 <body>
   <div class="container">
     <div class="sign-in-container">
-      <a href="../index.php">    
-        <img class="logo" src="../logo.png" alt="Ketring Logo" />
+      <a href="../index.php">
+        <img class="logo-icon" src="../logo.png" alt="Ketring Logo" />
       </a>
       <h2 class="sign-in-heading">Login</h2>
 
       <form action="#" method="post">
         <section class="email-section">
           <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Username@domain.com"
-            autocomplete="email"
-            required
-            autofocus
-          />
+          <input type="email" id="email" placeholder="Username@domain.com" autocomplete="email" required autofocus />
         </section>
 
         <section class="password-section">
           <label for="current-password">Password</label>
-          <input
-            id="current-password"
-            name="current-password"
-            type="password"
-            autocomplete="current-password"
-            aria-describedby="password-constraints"
-            placeholder="Password"
-            required
-          />
-          <button
-            id="toggle-password"
-            type="button"
-            aria-label="Show password as plain text. Warning: this will display your password on the screen."
-          >
+          <input id="current-password" name="current-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" placeholder="Password" required />
+          <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">
             Show password
           </button>
           <div id="password-constraints">
@@ -59,6 +42,7 @@
       </div>
     </div>
   </div>
-  <script src="script/script.js"></script>
+  <script src="../script/script.js"></script>
 </body>
+
 </html>
