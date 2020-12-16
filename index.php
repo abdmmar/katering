@@ -14,7 +14,7 @@
     <nav class="navbar">
       <div>
         <div class="logo">
-          <h1>Hena Catering</h1>
+          <h2>Hena Catering</h2>
         </div>
         <form class="search-input">
           <input type="search" id="search" placeholder="Search">

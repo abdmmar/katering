@@ -1,3 +1,42 @@
+<?php
+require('../class/class.Penjual.php');
+require('../class/class.Pembeli.php');
+
+if (isset($_POST["login"])) {
+  $inputEmail = $_POST["email"];
+  $inputPassword = $_POST["current-password"];
+
+  $Penjual = new Penjual();
+  $Pembeli = new Pembeli();
+
+  $Penjual->ValidateEmailPenjual($inputEmail);
+  // $Pembeli->ValidateEmailUser($inputEmail);
+  echo "$Penjual->result";
+
+  if ($Penjual->result) {
+    if ($inputPassword == $Penjual->password) {
+      if (!isset($_SESSION)) {
+        session_start();
+      }
+
+      $_SESSION["IDPenjual"] = $Penjual->IDPenjual;
+      $_SESSION["nama"] = $Penjual->nama;
+      $_SESSION["email"] = $Penjual->email;
+      $_SESSION["alamat"] = $Penjual->alamat;
+
+      echo "<script> alert('Login sukses!'); </script>";
+      echo '<script> window.location = "../pages/penjual/dashboardPenjual.php"; </script>';
+    } else {
+      echo "<script> alert('Password tidak match!'); </script>";
+    }
+  } elseif ($Pembeli->result) {
+    # code...
+  } else {
+    echo "<script> alert('Email tidak terdaftar!'); </script>";
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,10 +56,10 @@
       </a>
       <h2 class="sign-in-heading">Login</h2>
 
-      <form action="#" method="post">
+      <form action="" method="post">
         <section class="email-section">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Username@domain.com" autocomplete="email" required autofocus />
+          <input type="email" id="email" name="email" placeholder="Username@domain.com" autocomplete="email" required autofocus />
         </section>
 
         <section class="password-section">
@@ -35,10 +74,10 @@
           </div>
         </section>
 
-        <button type="submit" id="signin">Login</button>
+        <button type="submit" id="signin" name="login">Login</button>
       </form>
       <div class="sign-up">
-        <p>Don't have an account yet? <a href="register.php">Sign Up</a></p>
+        <p>Don't have an account yet? <a href="register.php">Register</a></p>
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@
   --mobile-font-size: 18px;
   --green: hsl(155, 69%, 40%);
   --darker-green: hsl(155, 69%, 30%);
+  --margin: 180px;
 }
 
 html {
@@ -165,6 +166,10 @@ ul li {
 }
 
 ul li a {
+  text-decoration: none;
+}
+
+a {
   text-decoration: none;
 }
 
