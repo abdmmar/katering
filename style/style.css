@@ -225,6 +225,19 @@ a.icon {
   color: #767676;
 }
 
+.label {
+  color: #767676;
+}
+
+img {
+  width: 100%;
+}
+
+h4 {
+  margin: 0 0 10px 0;
+  font-weight: 500;
+}
+
 @media (min-width: 450px) {
   button {
     font-size: 14px; /* fallback */

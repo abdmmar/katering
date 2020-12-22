@@ -88,7 +88,7 @@ class Pembeli extends Connection
             $this->message = 'Data gagal dihapus';
     }
 
-    public function SelectOneUser()
+    public function SelectUser()
     {
         $this->connect();
         $sql = "SELECT * FROM '$this->TABLE_PEMBELI' WHERE '$this->COLUMN_IDPEMBELI' = '$this->IDPembeli'";

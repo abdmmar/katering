@@ -57,7 +57,7 @@ class Alamat extends Connection
             $this->message = 'Data gagal dihapus';
     }
 
-    public function SelectOneAlamat()
+    public function SelectAlamat()
     {
         $this->connect();
         $sql = "SELECT * FROM '$this->TABLE_ALAMAT' WHERE '$this->COLUMN_IDPEMBELI' = '$this->IDPembeli'";

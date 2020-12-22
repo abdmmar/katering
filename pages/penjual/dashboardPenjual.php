@@ -53,13 +53,6 @@ require "../../inc.connection.php";
                             <a href="dashboardPenjual.php?p=logout" tabindex="2">Logout</a>
                         </div>
                         <div>
-                            <!-- </div>
-                <div class="dropdown" style="float: right">
-                    <button class="dropBtn">
-                        <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=chevron-down" width="18" height="18"></svg>
-                    </button>
-                    
-                </div> -->
                         </div>
         </nav>
     </header>
@@ -82,7 +75,7 @@ require "../../inc.connection.php";
                 echo '</div>';
             }
         } else {
-            include('../../pages/homepage.php');
+            include('./home.php');
         }
         ?>
     </main>
