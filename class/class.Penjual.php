@@ -14,7 +14,7 @@ class Penjual extends Connection
     public $message = '';
 
     public $TABLE_PENJUAL = 'penjual';
-    public $COLUMN_IDPENJUAL = 'IDPenjual';
+    public $COLUMN_IDPENJUAL = 'IDpenjual';
     public $COLUMN_NAMA = 'nama';
     public $COLUMN_EMAIL = 'email';
     public $COLUMN_TELEPON = 'telepon';
@@ -33,7 +33,7 @@ class Penjual extends Connection
         if (mysqli_num_rows($result) == 1) {
             $this->result = true;
             $data = mysqli_fetch_assoc($result);
-            $this->IDPenjual = $data['IDPenjual'];
+            $this->IDPenjual = $data['IDpenjual'];
             $this->nama = $data['nama'];
             $this->email = $data['email'];
             $this->password = $data['password'];

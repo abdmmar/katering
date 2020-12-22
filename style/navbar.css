@@ -35,10 +35,17 @@ header {
 }
 
 .feature {
-  margin: 0 20px;
+  display: flex;
+  margin: 0 10px;
+}
+
+.feature li {
+  border-radius: 5px;
 }
 
 .icon {
+  display: flex;
+  align-items: center;
   padding: 5px;
   list-style: none;
   text-decoration: none;

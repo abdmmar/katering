@@ -20,22 +20,27 @@ require "../../inc.connection.php";
         <nav class="navbar">
             <div>
                 <div class="logo">
-                    <h2>Hena Catering</h2>
+                    <a href="dashboardPenjual.php">
+                        <h2>Hena Catering</h2>
+                    </a>
                 </div>
                 <form class="search-input">
                     <input type="search" id="search" placeholder="Search">
                     <button class="btn-icon" type="submit">
-                        <!-- Please refer: https://github.com/shubhamjain/svg-loader -->
-
                         <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=search&fill=ffffff" width="18" height="18"></svg>
                     </button>
                 </form>
             </div>
             <div>
                 <ul class="feature">
-                    <li>
-                        <svg class="icon" data-src="https://s.svgbox.net/hero-outline.svg?ic=shopping-cart&fill=767676" width="24" height="24">
+                    <!-- <li class="icon">
+                        <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=shopping-cart&fill=767676" width="24" height="24">
                         </svg>
+                    </li> -->
+                    <li>
+                        <a class="icon" href="dashboardPenjual.php?p=addMenu">
+                            <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=plus&fill=767676" width="24" height="24"></svg>
+                        </a>
                     </li>
                 </ul>
                 <div class="profile" tabindex="0" role="button">

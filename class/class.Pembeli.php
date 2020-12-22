@@ -12,7 +12,7 @@ class Pembeli extends Connection
     public $message = '';
 
     public $TABLE_PEMBELI = 'pembeli';
-    public $COLUMN_IDPEMBELI = 'IDPembeli';
+    public $COLUMN_IDPEMBELI = 'IDpembeli';
     public $COLUMN_NAMA = 'nama';
     public $COLUMN_EMAIL = 'email';
     public $COLUMN_TELEPON = 'telepon';
@@ -22,15 +22,15 @@ class Pembeli extends Connection
     {
         $this->connect();
 
-        $sql = "SELECT * FROM '$this->TABLE_PEMBELI' 
-            WHERE '$this->COLUMN_EMAIL' = '$inputEmail'";
+        $sql = "SELECT * FROM $this->TABLE_PEMBELI 
+            WHERE $this->COLUMN_EMAIL = '$inputEmail'";
 
         $result = mysqli_query($this->connection, $sql);
 
         if (mysqli_num_rows($result) == 1) {
             $this->result = true;
             $data = mysqli_fetch_assoc($result);
-            $this->IDPembeli = $data['IDPembeli'];
+            $this->IDPembeli = $data['IDpembeli'];
             $this->nama = $data['nama'];
             $this->email = $data['email'];
             $this->password = $data['password'];
@@ -41,11 +41,11 @@ class Pembeli extends Connection
     public function addUser()
     {
         $this->connect();
-        $sql = "INSERT INTO '$this->TABLE_PEMBELI' 
-            ('$this->COLUMN_NAMA', '$this->COLUMN_EMAIL', 
-            '$this->COLUMN_TELEPON', '$this->COLUMN_PASSWORD')
-            VALUES ('$this->name', '$this->email', 
-            '$this->telpon', '$this->password')";
+        $sql = "INSERT INTO $this->TABLE_PEMBELI
+            ($this->COLUMN_NAMA, $this->COLUMN_EMAIL, 
+            $this->COLUMN_TELEPON, $this->COLUMN_PASSWORD)
+            VALUES ('$this->nama', '$this->email', 
+            '$this->telepon', '$this->password')";
 
         $this->result = mysqli_query($this->connection, $sql);
 

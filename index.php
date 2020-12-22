@@ -19,26 +19,23 @@
         <form class="search-input">
           <input type="search" id="search" placeholder="Search">
           <button class="btn-icon" type="submit">
-            <!-- Please refer: https://github.com/shubhamjain/svg-loader -->
-
             <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=search&fill=ffffff" width="18" height="18"></svg>
           </button>
         </form>
       </div>
       <div>
         <ul class="feature">
-          <li>
+          <li class="icon">
             <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=shopping-cart&fill=767676" width="24" height="24">
             </svg>
           </li>
         </ul>
         <div class="profile">
-          <ul>
-            <li><a href="pages/register.php">Register</a></li>
-            <li><a href="pages/login.php">Login</a></li>
-          </ul>
-          <!-- <div class="profile-picture">
-          </div> -->
+          <a class="icon" href="pages/login.php" aria-label="Login to Hena Catering">
+            <button class="login">
+              Login
+            </button>
+          </a>
         </div>
       </div>
     </nav>

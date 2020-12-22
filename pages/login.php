@@ -2,7 +2,7 @@
 require('../class/class.Penjual.php');
 require('../class/class.Pembeli.php');
 
-if (isset($_POST["login"])) {
+if (isset($_POST["submit"])) {
   $inputEmail = $_POST["email"];
   $inputPassword = $_POST["current-password"];
 
@@ -10,19 +10,21 @@ if (isset($_POST["login"])) {
   $Pembeli = new Pembeli();
 
   $Penjual->ValidateEmailPenjual($inputEmail);
-  // $Pembeli->ValidateEmailUser($inputEmail);
-  echo "$Penjual->result";
+  $Pembeli->ValidateEmailUser($inputEmail);
 
   if ($Penjual->result) {
-    if ($inputPassword == $Penjual->password) {
+
+    $isMatch = password_verify($inputPassword, $Penjual->password);
+
+    if ($isMatch) {
       if (!isset($_SESSION)) {
         session_start();
       }
 
-      $_SESSION["IDPenjual"] = $Penjual->IDPenjual;
       $_SESSION["nama"] = $Penjual->nama;
       $_SESSION["email"] = $Penjual->email;
       $_SESSION["alamat"] = $Penjual->alamat;
+      $_SESSION["IDPenjual"] = $Penjual->IDPenjual;
 
       echo "<script> alert('Login sukses!'); </script>";
       echo '<script> window.location = "../pages/penjual/dashboardPenjual.php"; </script>';
@@ -30,13 +32,30 @@ if (isset($_POST["login"])) {
       echo "<script> alert('Password tidak match!'); </script>";
     }
   } elseif ($Pembeli->result) {
-    # code...
+
+    $isMatch = password_verify($inputPassword, $Pembeli->password);
+    echo $isMatch;
+
+    if ($isMatch) {
+      if (!isset($_SESSION)) {
+        session_start();
+      }
+
+      $_SESSION["IDpembeli"] = $Pembeli->IDPembeli;
+      $_SESSION["nama"] = $Pembeli->nama;
+      $_SESSION["email"] = $Pembeli->email;
+
+      echo "<script> alert('Login sukses!'); </script>";
+      echo '<script> window.location = "../pages/pembeli/dashboardPembeli.php"; </script>';
+    } else {
+      echo "<script> alert('Password tidak match!'); </script>";
+    }
   } else {
     echo "<script> alert('Email tidak terdaftar!'); </script>";
   }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +75,7 @@ if (isset($_POST["login"])) {
       </a>
       <h2 class="sign-in-heading">Login</h2>
 
-      <form action="" method="post">
+      <form method="post" action="">
         <section class="email-section">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" placeholder="Username@domain.com" autocomplete="email" required autofocus />
@@ -64,7 +83,7 @@ if (isset($_POST["login"])) {
 
         <section class="password-section">
           <label for="current-password">Password</label>
-          <input id="current-password" name="current-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" placeholder="Password" required />
+          <input id="current-password" class="current-password" name="current-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" placeholder="Password" required />
           <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">
             Show password
           </button>
@@ -74,7 +93,7 @@ if (isset($_POST["login"])) {
           </div>
         </section>
 
-        <button type="submit" id="signin" name="login">Login</button>
+        <input type="submit" name="submit" id="login" value="Login" />
       </form>
       <div class="sign-up">
         <p>Don't have an account yet? <a href="register.php">Register</a></p>

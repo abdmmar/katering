@@ -1,3 +1,38 @@
+<?php
+include '../inc.connection.php';
+require('../class/class.Pembeli.php');
+require('../class/class.Alamat.php');
+
+if (isset($_POST["register"])) {
+  $inputEmail = $_POST["email"];
+  $inputPassword = $_POST["current-password"];
+
+  $Pembeli = new Pembeli();
+  $Alamat = new Alamat();
+
+  $Pembeli->ValidateEmailUser($inputEmail);
+
+  if ($Pembeli->result) {
+    echo "<script> alert('Email sudah terdaftar'); </script>";
+  }else{
+    $Pembeli->nama = $_POST["nama"];
+    $Pembeli->email = $inputEmail;
+    $Pembeli->telepon = $_POST["telepon"];
+    $Pembeli->password = password_hash($_POST["current-password"], PASSWORD_DEFAULT);
+    $IDPembeli_Alamat = $Pembeli->addUser();
+
+    $Alamat->IDPembeli = $IDPembeli_Alamat;
+    $Alamat->alamat = $_POST["alamat"];
+    $Alamat->addAlamat();
+
+    if($Pembeli->result){
+      echo "<script> alert('Registrasi berhasil'); </script>";
+      echo '<script> window.location="login.php"; </script>';
+    }
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,41 +46,50 @@
 
 <body>
   <div class="container">
-    <div class="sign-in-container">
+    <div class="sign-up-container">
       <a href="../index.php">
         <img class="logo-icon" src="../logo.png" alt="Ketring Logo" />
       </a>
       <h2 class="sign-in-heading">Register</h2>
 
       <form action="#" method="post">
-        <section class="name-section">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Budi" autocomplete="name" required autofocus />
-        </section>
+        <div class="form-group">
+          <section class="name-section">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="nama" placeholder="Budi" autocomplete="name" required autofocus />
+          </section>
 
-        <section class="email-section">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Username@domain.com" autocomplete="email" required autofocus />
-        </section>
+          <section class="email-section">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Username@domain.com" autocomplete="email" required autofocus />
+          </section>
+        </div>
 
-        <section class="telpon-section">
-          <label for="telpon">Nomer Telpon</label>
-          <input type="tel" id="telpon" placeholder="+62" autocomplete="telpon" required autofocus />
+        <section class="alamat-section">
+          <label for="alamat">Alamat</label>
+          <textarea id="alamat" name="alamat" rows="5" placeholder="Alamat" required></textarea>
         </section>
+        
+        <div class="form-group">
+          <section class="telpon-section">
+            <label for="telepon">Nomer Telepon</label>
+            <input type="tel" id="telepon" name="telepon" placeholder="+62" autocomplete="telepon" required autofocus />
+          </section>
+  
+          <section class="password-section">
+            <label for="current-password">Password</label>
+            <input id="current-password" class="current-password" name="current-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" placeholder="Password" required />
+            <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">
+              Show password
+            </button>
+          </section>
+        </div>
+        <div id="password-constraints">
+          Eight or more characters with a mix of letters, numbers and
+          symbols.
+        </div>
 
-        <section class="password-section">
-          <label for="current-password">Password</label>
-          <input id="current-password" name="current-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" placeholder="Password" required />
-          <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">
-            Show password
-          </button>
-          <div id="password-constraints">
-            Eight or more characters with a mix of letters, numbers and
-            symbols.
-          </div>
-        </section>
-
-        <button type="submit" id="signin">Register</button>
+        <button type="submit" id="register" name="register">Register</button>
       </form>
       <div class="sign-up">
         <p>Already have an account? <a href="login.php">Login</a></p>
