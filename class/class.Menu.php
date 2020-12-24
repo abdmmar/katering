@@ -51,6 +51,23 @@ class Menu extends Connection
         }
     }
 
+    public function getMenu()
+    {
+        $this->connect();
+        $sql = "SELECT * FROM $this->TABLE_MENU WHERE $this->COLUMN_MENUID=$this->menuID";
+        $result = mysqli_query($this->connection, $sql);
+
+        if (mysqli_num_rows($result) == 1) {
+            $this->result = true;
+            $data = mysqli_fetch_assoc($result);
+            $this->nama = $data[$this->COLUMN_NAMA];
+            $this->deskripsi = $data[$this->COLUMN_DESKRIPSI];
+            $this->gambar = $data[$this->COLUMN_GAMBAR];
+            $this->harga = $data[$this->COLUMN_HARGA];
+            $this->IDpenjual = $data[$this->COLUMN_IDPENJUAL];
+        }
+    }
+
     public function getAllMenu()
     {
         $this->connect();
