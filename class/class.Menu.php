@@ -51,6 +51,25 @@ class Menu extends Connection
         }
     }
 
+    public function updateMenu()
+    {
+        $this->connect();
+        $sql = "UPDATE $this->TABLE_MENU
+        SET $this->COLUMN_NAMA = '$this->nama',
+            $this->COLUMN_DESKRIPSI = '$this->deskripsi',
+            $this->COLUMN_GAMBAR = '$this->gambar',
+            $this->COLUMN_HARGA = $this->harga,
+            $this->COLUMN_IDPENJUAL = $this->IDpenjual
+        WHERE $this->COLUMN_MENUID = $this->menuID";
+
+        $this->result = mysqli_query($this->connection, $sql);
+
+        if ($this->result)
+            $this->message = 'Data berhasil diubah';
+        else
+            $this->message = 'Data gagal diubah';
+    }
+
     public function getMenu()
     {
         $this->connect();

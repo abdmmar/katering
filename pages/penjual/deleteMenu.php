@@ -2,9 +2,9 @@
 
 require('../../class/class.Menu.php');
 
-if (isset($_GET['MenuID'])) {
+if (isset($_GET['menuID'])) {
     $Menu = new Menu();
-    $Menu->menuID = $_GET['MenuID'];
+    $Menu->menuID = $_GET['menuID'];
 
     $Menu->getMenu();
     $target_dir = "../../uploads/";
