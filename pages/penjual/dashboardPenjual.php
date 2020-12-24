@@ -84,6 +84,16 @@ require "../../inc.connection.php";
     <script>
         const dropdown = document.querySelector('.dropdown');
         const dropdownContent = document.querySelector('.dropdown-content');
+        const inputFile = document.querySelector('#photoName');
+
+        inputFile.oninput = function() {
+            let message = ''
+            if (inputFile.length === 0) {
+                message = 'Upload your photo'
+            }
+            inputFile.setCustomValidity(message);
+        }
+
         dropdown.addEventListener('click', () => {
             dropdownContent.classList.add('show');
         })

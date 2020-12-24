@@ -1,5 +1,5 @@
 .container-dashboard {
-  margin: 0 180px;
+  margin: 50px 180px;
 }
 
 .container-penjual {
@@ -9,7 +9,8 @@
 .container-home-penjual {
   display: flex;
   flex-direction: row;
-  width: 1080px;
+  width: 100%;
+  max-width: 1080px;
 }
 
 .info-penjual-container {
@@ -59,7 +60,7 @@
   padding: 10px;
 }
 
-.kategori-menu li.selected {
+.kategori-menu li:hover {
   background-color: #f6f6f6;
   color: var(--green);
 }
@@ -102,8 +103,8 @@
 .all-menu {
   width: 100%;
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .all-menu .menu-item {
@@ -111,8 +112,68 @@
   border-radius: 5px;
 }
 
-.menu-item-info {
-  padding: 20px;
+.menu-item-info,
+.menu-action {
+  padding: 10px 20px 10px;
+}
+
+.menu-action {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 20px 20px;
+}
+
+.menu-action button {
+  background-color: #f6f6f6;
+  margin-right: 10px;
+  width: 50%;
+  padding: 10px;
+}
+
+.menu-item-info.pembeli {
+  padding: 10px 20px;
+}
+
+.menu-action.pembeli {
+  padding: 10px 0 20px;
+  margin: 0 0 20px;
+}
+
+.menu-action.pembeli button {
+  width: 100%;
+  background-color: var(--green);
+}
+
+.menu-action.pembeli button a {
+  color: white;
+}
+
+.menu-action.pembeli button:hover {
+  background-color: var(--darker-green);
+}
+
+.menu-action button:last-child {
+  margin-right: 0;
+}
+
+.menu-action button a {
+  display: flex;
+  align-items: center;
+  color: #545454;
+  text-align: center;
+  justify-content: center;
+}
+
+.menu-action button a svg {
+  margin-right: 5px;
+}
+
+.menu-action button a span {
+  margin-top: 2px;
+}
+
+.menu-action button:hover {
+  background-color: #f0f0f0;
 }
 
 .menu-item img {

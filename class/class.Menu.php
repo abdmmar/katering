@@ -38,7 +38,20 @@ class Menu extends Connection
         return $this->connection->insert_id;
     }
 
-    public function SelectAllMenu()
+    public function deleteMenu()
+    {
+        $this->connect();
+        $sql = "DELETE FROM $this->TABLE_MENU WHERE $this->COLUMN_MENUID=$this->menuID";
+        $this->result = mysqli_query($this->connection, $sql);
+
+        if ($this->result) {
+            $this->message = 'Menu berhasil dihapus';
+        } else {
+            $this->message = 'Menu gagal dihapus';
+        }
+    }
+
+    public function getAllMenu()
     {
         $this->connect();
         $sql = "SELECT * FROM $this->TABLE_MENU";

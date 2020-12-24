@@ -8,8 +8,12 @@ if (isset($_POST["add-menu"])) {
     $inputDescription = $_POST["description"];
     $inputCategory = $_POST["category"];
     $inputPrice = $_POST["price"];
+    $uploaded = array("Choose your file before submit", 0);
 
-    $uploaded = addFile($inputFile);
+    if ($inputFile["name"] != '') {
+        $uploaded = addFile($inputFile);
+    }
+
     $Menu = new Menu();
 
     if ($uploaded[1] == 1) {
@@ -25,7 +29,7 @@ if (isset($_POST["add-menu"])) {
             echo '<script> window.location="dashboardPenjual.php"; </script>';
         }
     } else {
-        echo "<script> alert($uploaded[0])</script>";
+        echo "<script> alert('$uploaded[0]')</script>";
     }
 }
 
