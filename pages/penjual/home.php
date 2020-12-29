@@ -1,5 +1,6 @@
 <?php
 require('../../class/class.Menu.php');
+require('../../class/class.Kategori.php');
 ?>
 <div class="container-penjual">
   <div class="container-home-penjual">
@@ -24,14 +25,14 @@ require('../../class/class.Menu.php');
       <div class="kategori-menu">
         <h3>Kategori</h3>
         <ul>
-          <?php
-
-          ?>
           <li class="selected">Semua Produk</li>
-          <li>Makanan</li>
-          <li>Minuman</li>
-          <li>Buah</li>
-          <li>Kue</li>
+          <?php
+          $Kategori = new Kategori();
+          $listKategori = $Kategori->getAllKategori();
+          foreach ($listKategori as $kategori) {
+            echo "<li>$kategori->namakategori</li>";
+          }
+          ?>
         </ul>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-class Menu extends Connection
+class Kategori extends Connection
 {
   public $IDKategori = 0;
   public $namakategori = '';
@@ -18,8 +18,8 @@ class Menu extends Connection
   {
     $this->connect();
     $sql = "INSERT INTO $this->TABLE_KATEGORI
-            ($this->COLUMN_NAMAKATEGORI, $this->COLUMN_MENUID) 
-            VALUES ('$this->namakategori', $this->menuID)";
+            ($this->COLUMN_IDKATEGORI, $this->COLUMN_NAMAKATEGORI, $this->COLUMN_MENUID) 
+            VALUES ($this->IDKategori, '$this->namakategori', $this->menuID)";
 
     $this->result = mysqli_query($this->connection, $sql);
 
@@ -32,79 +32,56 @@ class Menu extends Connection
     return $this->connection->insert_id;
   }
 
-  public function deleteMenu()
+  public function updateKategori()
   {
     $this->connect();
-    $sql = "DELETE FROM $this->TABLE_MENU WHERE $this->COLUMN_MENUID=$this->menuID";
-    $this->result = mysqli_query($this->connection, $sql);
-
-    if ($this->result) {
-      $this->message = 'Menu berhasil dihapus';
-    } else {
-      $this->message = 'Menu gagal dihapus';
-    }
-  }
-
-  public function updateMenu()
-  {
-    $this->connect();
-    $sql = "UPDATE $this->TABLE_MENU
-        SET $this->COLUMN_NAMA = '$this->nama',
-            $this->COLUMN_DESKRIPSI = '$this->deskripsi',
-            $this->COLUMN_GAMBAR = '$this->gambar',
-            $this->COLUMN_HARGA = $this->harga,
-            $this->COLUMN_IDPENJUAL = $this->IDpenjual
+    $sql = "UPDATE $this->TABLE_KATEGORI
+        SET $this->COLUMN_IDKATEGORI = '$this->IDKategori',
+            $this->COLUMN_NAMAKATEGORI = '$this->namakategori',
         WHERE $this->COLUMN_MENUID = $this->menuID";
 
     $this->result = mysqli_query($this->connection, $sql);
 
     if ($this->result)
-      $this->message = 'Data berhasil diubah';
+      $this->message = 'Kategori berhasil diubah';
     else
-      $this->message = 'Data gagal diubah';
+      $this->message = 'Kategori gagal diubah';
   }
 
-  public function getMenu()
+  public function getKategoriByMenu()
   {
     $this->connect();
-    $sql = "SELECT * FROM $this->TABLE_MENU WHERE $this->COLUMN_MENUID=$this->menuID";
+    $sql = "SELECT * FROM $this->TABLE_KATEGORI WHERE $this->COLUMN_MENUID=$this->menuID";
     $result = mysqli_query($this->connection, $sql);
 
     if (mysqli_num_rows($result) == 1) {
       $this->result = true;
       $data = mysqli_fetch_assoc($result);
-      $this->nama = $data[$this->COLUMN_NAMA];
-      $this->deskripsi = $data[$this->COLUMN_DESKRIPSI];
-      $this->gambar = $data[$this->COLUMN_GAMBAR];
-      $this->harga = $data[$this->COLUMN_HARGA];
-      $this->IDpenjual = $data[$this->COLUMN_IDPENJUAL];
+      $this->IDKategori = $data[$this->COLUMN_IDKATEGORI];
+      $this->namakategori = $data[$this->COLUMN_NAMAKATEGORI];
     }
   }
 
-  public function getAllMenu()
+  public function getAllKategori()
   {
     $this->connect();
-    $sql = "SELECT * FROM $this->TABLE_MENU";
+    $sql = "SELECT DISTINCT $this->COLUMN_IDKATEGORI, $this->COLUMN_NAMAKATEGORI FROM $this->TABLE_KATEGORI";
     $result = mysqli_query($this->connection, $sql);
-    $arrayMenu = array();
+    $arrayKategori = array();
     $count = 0;
 
     if (mysqli_num_rows($result) > 0) {
       while ($data = mysqli_fetch_array($result)) {
-        $Menu = new Menu();
-        $Menu->menuID = $data[$this->COLUMN_MENUID];
-        $Menu->nama = $data[$this->COLUMN_NAMA];
-        $Menu->deskripsi = $data[$this->COLUMN_DESKRIPSI];
-        $Menu->gambar = $data[$this->COLUMN_GAMBAR];
-        $Menu->harga = $data[$this->COLUMN_HARGA];
-        $Menu->IDpenjual = $data[$this->COLUMN_IDPENJUAL];
-        $arrayMenu[$count] = $Menu;
+        $Kategori = new Kategori();
+        $Kategori->IDKategori = $data[$this->COLUMN_IDKATEGORI];
+        $Kategori->namakategori = $data[$this->COLUMN_NAMAKATEGORI];
+        $arrayKategori[$count] = $Kategori;
         $count++;
       }
     } else {
-      $this->message = 'Belum ada menu nih';
+      $this->message = 'Belum ada kategori nih';
     }
 
-    return $arrayMenu;
+    return $arrayKategori;
   }
 }
