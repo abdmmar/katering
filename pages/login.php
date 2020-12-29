@@ -25,8 +25,9 @@ if (isset($_POST["submit"])) {
       $_SESSION["nama"] = $Penjual->nama;
       $_SESSION["email"] = $Penjual->email;
       $_SESSION["alamat"] = $Penjual->alamat;
+      $_SESSION["telepon"] = $Penjual->telepon;
+      $_SESSION["deskripsi"] = $Penjual->deskripsi;
       $_SESSION["IDpenjual"] = $Penjual->IDpenjual;
-      echo $_SESSION["IDpenjual"];
 
       echo "<script> alert('Login sukses!'); </script>";
       echo '<script> window.location = "../pages/penjual/dashboard.php"; </script>';
