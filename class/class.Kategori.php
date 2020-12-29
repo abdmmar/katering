@@ -2,37 +2,31 @@
 
 class Menu extends Connection
 {
-  public $menuID = 0;
-  public $nama = '';
-  public $gambar = '';
-  public $deskripsi = '';
-  public $harga = 0;
-  public $IDpenjual = 0;
+  public $IDKategori = 0;
+  public $namakategori = '';
+  public $menuID = '';
 
   public $result = false;
   public $message = '';
 
-  public $TABLE_MENU = 'menu';
+  public $TABLE_KATEGORI = 'kategori';
+  public $COLUMN_IDKATEGORI = 'IDKategori';
+  public $COLUMN_NAMAKATEGORI = 'namakategori';
   public $COLUMN_MENUID = 'menuID';
-  public $COLUMN_NAMA = 'nama';
-  public $COLUMN_DESKRIPSI = 'deskripsi';
-  public $COLUMN_GAMBAR = 'gambar';
-  public $COLUMN_HARGA = 'harga';
-  public $COLUMN_IDPENJUAL = 'IDpenjual';
 
-  public function addMenu()
+  public function addKategori()
   {
     $this->connect();
-    $sql = "INSERT INTO $this->TABLE_MENU
-            ($this->COLUMN_NAMA, $this->COLUMN_DESKRIPSI, $this->COLUMN_GAMBAR, $this->COLUMN_HARGA, $this->COLUMN_IDPENJUAL) 
-            VALUES ('$this->nama', '$this->deskripsi', '$this->gambar', $this->harga, $this->IDpenjual)";
+    $sql = "INSERT INTO $this->TABLE_KATEGORI
+            ($this->COLUMN_NAMAKATEGORI, $this->COLUMN_MENUID) 
+            VALUES ('$this->namakategori', $this->menuID)";
 
     $this->result = mysqli_query($this->connection, $sql);
 
     if ($this->result) {
-      $this->message = 'Data berhasil ditambahkan';
+      $this->message = 'Kategori berhasil ditambahkan';
     } else {
-      $this->message = 'Data gagal ditambahkan';
+      $this->message = 'Kategori gagal ditambahkan';
     }
 
     return $this->connection->insert_id;

@@ -15,11 +15,18 @@ require('../../class/class.Menu.php');
         <p>08123841876</p>
         <p class="label">Alamat Toko</p>
         <p>Jl. Jalan Satu Dua Tiga</p>
-        <button>Edit Profile</button>
+        <a href="dashboard.php?p=profile&IDpenjual=<?php echo $_SESSION["IDpenjual"] ?>">
+          <button>
+            Edit Profile
+          </button>
+        </a>
       </div>
       <div class="kategori-menu">
         <h3>Kategori</h3>
         <ul>
+          <?php
+
+          ?>
           <li class="selected">Semua Produk</li>
           <li>Makanan</li>
           <li>Minuman</li>
@@ -53,7 +60,7 @@ require('../../class/class.Menu.php');
           echo '  </div>';
           echo '  <div class="menu-action">';
           echo '    <button>';
-          echo '      <a href="dashboardPenjual.php?p=addMenu&menuID=' . $menu->menuID . '">';
+          echo '      <a href="dashboard.php?p=addMenu&menuID=' . $menu->menuID . '">';
           echo '        <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=pencil" width="18" height="18" stroke="currentColor"></svg>';
           echo '        <span>';
           echo '          Edit';
@@ -61,7 +68,7 @@ require('../../class/class.Menu.php');
           echo '      </a>';
           echo '    </button>';
           echo '    <button>';
-          echo '      <a href="dashboardPenjual.php?p=deleteMenu&menuID=' . $menu->menuID . '">';
+          echo '      <a href="dashboard.php?p=deleteMenu&menuID=' . $menu->menuID . '">';
           echo '        <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=trash" width="18" height="18" stroke="currentColor"></svg>';
           echo '        <span>';
           echo '          Delete';
@@ -88,7 +95,7 @@ require('../../class/class.Menu.php');
           </div>
           <div class="menu-action">
             <button>
-              <a href="dashboardPenjual.php">
+              <a href="dashboard.php">
                 <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=pencil" width="18" height="18" stroke="currentColor"></svg>
                 <span>
                   Edit
@@ -96,7 +103,7 @@ require('../../class/class.Menu.php');
               </a>
             </button>
             <button>
-              <a href="dashboardPenjual.php">
+              <a href="dashboard.php">
                 <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=trash" width="18" height="18" stroke="currentColor"></svg>
                 <span>
                   Delete

@@ -1,0 +1,16 @@
+.container-profile {
+  display: grid;
+  place-content: center;
+  margin: 50px 0;
+}
+
+.profile-section {
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.profile-section form {
+  width: calc(100% - 20px);
+}

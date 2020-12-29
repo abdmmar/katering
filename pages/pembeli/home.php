@@ -1,6 +1,5 @@
 <?php
-include './inc.connection.php';
-require('./class/class.Menu.php');
+require('../../class/class.Menu.php');
 ?>
 <div class="container-dashboard">
   <div class="all-menu">
@@ -9,7 +8,7 @@ require('./class/class.Menu.php');
     $listMenu = $Menu->getAllMenu();
     foreach ($listMenu as $menu) {
       echo '<div class="menu-item">';
-      echo '  <img src="./uploads/' . $menu->gambar . '" alt="' . $menu->nama . '">';
+      echo '  <img src="../../uploads/' . $menu->gambar . '" alt="' . $menu->nama . '">';
       echo '  <div class="menu-item-info pembeli">';
       echo "    <h4>$menu->nama</h4>";
       echo '    <p class="label-harga">';

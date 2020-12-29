@@ -1,4 +1,5 @@
 <?php
+include('../inc.connection.php');
 require('../class/class.Penjual.php');
 require('../class/class.Pembeli.php');
 
@@ -24,10 +25,11 @@ if (isset($_POST["submit"])) {
       $_SESSION["nama"] = $Penjual->nama;
       $_SESSION["email"] = $Penjual->email;
       $_SESSION["alamat"] = $Penjual->alamat;
-      $_SESSION["IDPenjual"] = $Penjual->IDPenjual;
+      $_SESSION["IDpenjual"] = $Penjual->IDpenjual;
+      echo $_SESSION["IDpenjual"];
 
       echo "<script> alert('Login sukses!'); </script>";
-      echo '<script> window.location = "../pages/penjual/dashboardPenjual.php"; </script>';
+      echo '<script> window.location = "../pages/penjual/dashboard.php"; </script>';
     } else {
       echo "<script> alert('Password tidak match!'); </script>";
     }
@@ -46,7 +48,7 @@ if (isset($_POST["submit"])) {
       $_SESSION["email"] = $Pembeli->email;
 
       echo "<script> alert('Login sukses!'); </script>";
-      echo '<script> window.location = "../pages/pembeli/dashboardPembeli.php"; </script>';
+      echo '<script> window.location = "../pages/pembeli/dashboard.php"; </script>';
     } else {
       echo "<script> alert('Password tidak match!'); </script>";
     }

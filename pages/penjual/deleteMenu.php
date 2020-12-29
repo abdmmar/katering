@@ -17,7 +17,7 @@ if (isset($_GET['menuID'])) {
     $Menu->deleteMenu();
 
     echo "<script> alert('$Menu->message'); </script>";
-    echo "<script> window.location = 'dashboardPenjual.php' </script>";
+    echo "<script> window.location = 'dashboard.php' </script>";
 } else {
     echo '<script> window.history.back() </script>';
 }

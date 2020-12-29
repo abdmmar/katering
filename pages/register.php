@@ -14,7 +14,7 @@ if (isset($_POST["register"])) {
 
   if ($Pembeli->result) {
     echo "<script> alert('Email sudah terdaftar'); </script>";
-  }else{
+  } else {
     $Pembeli->nama = $_POST["nama"];
     $Pembeli->email = $inputEmail;
     $Pembeli->telepon = $_POST["telepon"];
@@ -25,7 +25,7 @@ if (isset($_POST["register"])) {
     $Alamat->alamat = $_POST["alamat"];
     $Alamat->addAlamat();
 
-    if($Pembeli->result){
+    if ($Pembeli->result) {
       echo "<script> alert('Registrasi berhasil'); </script>";
       echo '<script> window.location="login.php"; </script>';
     }
@@ -69,13 +69,13 @@ if (isset($_POST["register"])) {
           <label for="alamat">Alamat</label>
           <textarea id="alamat" name="alamat" rows="5" placeholder="Alamat" required></textarea>
         </section>
-        
+
         <div class="form-group">
           <section class="telpon-section">
             <label for="telepon">Nomer Telepon</label>
             <input type="tel" id="telepon" name="telepon" placeholder="+62" autocomplete="telepon" required autofocus />
           </section>
-  
+
           <section class="password-section">
             <label for="current-password">Password</label>
             <input id="current-password" class="current-password" name="current-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" placeholder="Password" required />
