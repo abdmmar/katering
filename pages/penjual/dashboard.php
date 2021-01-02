@@ -24,19 +24,9 @@ require "../../inc.connection.php";
             <h2>Hena Catering</h2>
           </a>
         </div>
-        <!-- <form class="search-input">
-          <input type="search" id="search" placeholder="Search">
-          <button class="btn-icon" type="submit">
-            <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=search&fill=ffffff" width="18" height="18"></svg>
-          </button>
-        </form> -->
       </div>
       <div>
         <ul class="feature">
-          <!-- <li class="icon">
-                        <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=shopping-cart&fill=767676" width="24" height="24">
-                        </svg>
-                    </li> -->
           <li>
             <a class="icon" href="dashboard.php?p=addMenu">
               <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=plus&fill=767676" width="24" height="24"></svg>

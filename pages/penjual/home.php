@@ -85,38 +85,6 @@ require('../../class/class.Penjual.php');
         }
 
         ?>
-        <div class="menu-item">
-          <img src="../../uploads/benjamin-henon-ZAucxTNf9bw-unsplash.jpg" alt="Menu">
-          <div class="menu-item-info">
-            <h4>Menu</h4>
-            <p class="label-harga">
-              <strong>
-                Rp
-                <span class="harga">
-                  50000
-                </span>
-              </strong>
-            </p>
-          </div>
-          <div class="menu-action">
-            <button>
-              <a href="dashboard.php">
-                <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=pencil" width="18" height="18" stroke="currentColor"></svg>
-                <span>
-                  Edit
-                </span>
-              </a>
-            </button>
-            <button>
-              <a href="dashboard.php">
-                <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=trash" width="18" height="18" stroke="currentColor"></svg>
-                <span>
-                  Delete
-                </span>
-              </a>
-            </button>
-          </div>
-        </div>
 
       </div>
     </div>
