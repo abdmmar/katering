@@ -24,12 +24,12 @@ require "../../inc.connection.php";
             <h2>Hena Catering</h2>
           </a>
         </div>
-        <form class="search-input">
+        <!-- <form class="search-input">
           <input type="search" id="search" placeholder="Search">
           <button class="btn-icon" type="submit">
             <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=search&fill=ffffff" width="18" height="18"></svg>
           </button>
-        </form>
+        </form> -->
       </div>
       <div>
         <ul class="feature">

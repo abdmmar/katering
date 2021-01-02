@@ -7,11 +7,11 @@ require('../../class/class.Penjual.php');
   <div class="container-home-penjual">
     <div class="info-penjual-container">
       <div class="info-penjual">
-        <img src="../../uploads/benjamin-henon-ZAucxTNf9bw-unsplash.jpg" alt="Foto Profil Hena Catering">
         <?php
         $Penjual = new Penjual();
         $Penjual->IDpenjual = $_SESSION["IDpenjual"];
         $Penjual->getPenjual();
+        echo '<img src="../../uploads/' . $Penjual->foto . '" alt="Foto Profil Hena Catering">';
         echo "<h2>$Penjual->nama</h2>";
         echo '<p class="label">Deskripsi Toko</p>';
         echo "<p>$Penjual->deskripsi</p>";

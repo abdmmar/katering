@@ -35,7 +35,7 @@ if (isset($_POST["save-profile"])) {
     $target_dir = "../../uploads/";
     $target_file = $target_dir . basename($currentPhoto);
 
-    $uploaded = addFile($inputFile);
+    $uploaded = addFile($inputPhoto);
     $currentPhoto = $inputPhoto["name"];
 
     if (file_exists($target_file)) {
@@ -45,7 +45,7 @@ if (isset($_POST["save-profile"])) {
     $uploaded[1] = 1;
   }
 
-  
+
   if ($uploaded[1] == 1) {
     $Penjual = new Penjual();
     $Penjual->IDpenjual = $_SESSION["IDpenjual"];
