@@ -37,14 +37,13 @@ if (isset($_POST["submit"])) {
   } elseif ($Pembeli->result) {
 
     $isMatch = password_verify($inputPassword, $Pembeli->password);
-    echo $isMatch;
 
     if ($isMatch) {
       if (!isset($_SESSION)) {
         session_start();
       }
 
-      $_SESSION["IDpembeli"] = $Pembeli->IDPembeli;
+      $_SESSION["IDpembeli"] = $Pembeli->IDpembeli;
       $_SESSION["nama"] = $Pembeli->nama;
       $_SESSION["email"] = $Pembeli->email;
 

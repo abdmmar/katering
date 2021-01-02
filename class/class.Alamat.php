@@ -2,7 +2,7 @@
 
 class Alamat extends Connection
 {
-  public $IDPembeli = 0;
+  public $IDpembeli = 0;
   public $alamat = '';
 
   public $result = false;
@@ -10,14 +10,14 @@ class Alamat extends Connection
 
   public $TABLE_ALAMAT = 'alamat_pembeli';
   public $COLUMN_IDPEMBELI = 'IDpembeli';
-  public $COLUMN_ALAMAT = 'Alamat';
+  public $COLUMN_ALAMAT = 'alamat';
 
   public function addAlamat()
   {
     $this->connect();
     $sql = "INSERT INTO $this->TABLE_ALAMAT
             ($this->COLUMN_IDPEMBELI, $this->COLUMN_ALAMAT) 
-            VALUES ($this->IDPembeli, '$this->alamat')";
+            VALUES ($this->IDpembeli, '$this->alamat')";
 
     $this->result = mysqli_query($this->connection, $sql);
 
@@ -33,9 +33,9 @@ class Alamat extends Connection
   public function UpdateAlamat()
   {
     $this->connect();
-    $sql = "UPDATE '$this->TABLE_ALAMAT'
+    $sql = "UPDATE $this->TABLE_ALAMAT
                     SET $this->COLUMN_ALAMAT = '$this->alamat'
-                    WHERE $this->COLUMN_IDPEMBELI = '$this->IDPembeli'";
+                    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli";
 
     $this->result = mysqli_query($this->connection, $sql);
 
@@ -48,7 +48,7 @@ class Alamat extends Connection
   public function DeleteAlamat()
   {
     $this->connect();
-    $sql = "DELETE FROM '$this->TABLE_ALAMAT' WHERE '$this->COLUMN_IDPEMBELI' = '$this->IDPembeli'";
+    $sql = "DELETE FROM $this->TABLE_ALAMAT WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli";
     $this->result = mysqli_query($this->connection, $sql);
 
     if ($this->result)
@@ -57,19 +57,16 @@ class Alamat extends Connection
       $this->message = 'Data gagal dihapus';
   }
 
-  public function SelectAlamat()
+  public function getAlamat()
   {
     $this->connect();
-    $sql = "SELECT * FROM '$this->TABLE_ALAMAT' WHERE '$this->COLUMN_IDPEMBELI' = '$this->IDPembeli'";
+    $sql = "SELECT * FROM $this->TABLE_ALAMAT WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli";
     $result = mysqli_query($this->connection, $sql);
 
     if (mysqli_num_rows($result) == 1) {
       $this->result = true;
       $data = mysqli_fetch_assoc($result);
-      $this->nama = $data['nama'];
-      $this->email = $data['email'];
-      $this->password = $data['password'];
-      $this->telepon = $data['telepon'];
+      $this->alamat = $data[$this->COLUMN_ALAMAT];
     }
   }
 }

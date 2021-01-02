@@ -20,7 +20,9 @@ require "../../inc.connection.php";
     <nav class="navbar">
       <div>
         <div class="logo">
-          <h2>Hena Catering</h2>
+          <a href="dashboard.php">
+            <h2>Hena Catering</h2>
+          </a>
         </div>
         <form class="search-input">
           <input type="search" id="search" placeholder="Search">
@@ -38,11 +40,12 @@ require "../../inc.connection.php";
         </ul>
         <div class="profile" tabindex="0" role="button">
           <div class="profile-picture">
+            <img src="../../uploads/Monas.png" alt="Profile picture">
           </div>
           <div class="dropdown" style="float: right">
             <div class="dropdown-content">
               <h4><?php echo $_SESSION["nama"] ?></h4>
-              <a href="#" tabindex="1">Profile</a>
+              <a href="dashboard.php?p=profile&IDpembeli=<?php echo $_SESSION["IDpembeli"] ?>" tabindex="1">Profile</a>
               <a href="dashboard.php?p=logout" tabindex="2">Logout</a>
             </div>
             <div>

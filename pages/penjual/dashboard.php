@@ -3,6 +3,7 @@ if (!isset($_SESSION)) {
   session_start();
 }
 require "../../inc.connection.php";
+require('../../class/class.Penjual.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +36,13 @@ require "../../inc.connection.php";
         </ul>
         <div class="profile" tabindex="0" role="button">
           <div class="profile-picture">
+            <?php
+            $Penjual = new Penjual();
+            $Penjual->IDpenjual = $_SESSION["IDpenjual"];
+            $Penjual->getPenjual();
+
+            echo '<img src="../../uploads/' . $Penjual->foto . '" alt="' . $Penjual->nama . ' profile picture">'
+            ?>
           </div>
           <div class="dropdown" style="float: right">
             <div class="dropdown-content">

@@ -83,7 +83,12 @@ header {
   width: 32px;
   height: 32px;
   background-color: var(--green);
-  border-radius: 100px;
+  border-radius: 50%;
+  border: 1px solid #dfdfdf;
+}
+
+.profile-picture img {
+  border-radius: 50%;
 }
 
 .dropBtn {
@@ -112,9 +117,11 @@ header {
   top: 20px;
   right: 20px;
   text-align: right;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  border: 1px solid #dfdfdf;
   z-index: 1;
 }
 
@@ -143,9 +150,6 @@ header {
   display: block !important;
 }
 
-/* .dropbtn:active {
-  display: block !important;
-} */
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }

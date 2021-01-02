@@ -1,7 +1,7 @@
 <?php
 require('../../class/class.Menu.php');
 require('../../class/class.Kategori.php');
-require('../../class/class.Penjual.php');
+
 ?>
 <div class="container-penjual">
   <div class="container-home-penjual">

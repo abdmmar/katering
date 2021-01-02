@@ -2,7 +2,7 @@
 
 class Pembeli extends Connection
 {
-  public $IDPembeli = 0;
+  public $IDpembeli = 0;
   public $nama = '';
   public $email = '';
   public $telepon = '';
@@ -30,7 +30,7 @@ class Pembeli extends Connection
     if (mysqli_num_rows($result) == 1) {
       $this->result = true;
       $data = mysqli_fetch_assoc($result);
-      $this->IDPembeli = $data['IDpembeli'];
+      $this->IDpembeli = $data['IDpembeli'];
       $this->nama = $data['nama'];
       $this->email = $data['email'];
       $this->password = $data['password'];
@@ -61,12 +61,12 @@ class Pembeli extends Connection
   public function UpdateUser()
   {
     $this->connect();
-    $sql = "UPDATE '$this->TABLE_PEMBELI'
+    $sql = "UPDATE $this->TABLE_PEMBELI
                     SET $this->COLUMN_NAMA = '$this->nama',
-                        $this->COLUM_EMAIL = '$this->email',
+                        $this->COLUMN_EMAIL = '$this->email',
                         $this->COLUMN_PASSWORD = '$this->password',
                         $this->COLUMN_TELEPON = '$this->telepon'
-                    WHERE $this->COLUMN_IDPEMBELI = '$this->IDPembeli'";
+                    WHERE $this->COLUMN_IDPEMBELI = '$this->IDpembeli'";
 
     $this->result = mysqli_query($this->connection, $sql);
 
@@ -79,7 +79,7 @@ class Pembeli extends Connection
   public function DeleteUser()
   {
     $this->connect();
-    $sql = "DELETE FROM '$this->TABLE_PEMBELI' WHERE '$this->COLUMN_IDPEMBELI' = '$this->IDPembeli'";
+    $sql = "DELETE FROM $this->TABLE_PEMBELI WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli";
     $this->result = mysqli_query($this->connection, $sql);
 
     if ($this->result)
@@ -88,10 +88,10 @@ class Pembeli extends Connection
       $this->message = 'Data gagal dihapus';
   }
 
-  public function SelectUser()
+  public function getUser()
   {
     $this->connect();
-    $sql = "SELECT * FROM '$this->TABLE_PEMBELI' WHERE '$this->COLUMN_IDPEMBELI' = '$this->IDPembeli'";
+    $sql = "SELECT * FROM $this->TABLE_PEMBELI WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli";
     $result = mysqli_query($this->connection, $sql);
 
     if (mysqli_num_rows($result) == 1) {
