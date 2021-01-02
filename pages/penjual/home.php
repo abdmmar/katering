@@ -1,21 +1,25 @@
 <?php
 require('../../class/class.Menu.php');
 require('../../class/class.Kategori.php');
+require('../../class/class.Penjual.php');
 ?>
 <div class="container-penjual">
   <div class="container-home-penjual">
     <div class="info-penjual-container">
       <div class="info-penjual">
-        <figure>
-          <img src="../../uploads/benjamin-henon-ZAucxTNf9bw-unsplash.jpg" alt="Foto Profil Hena Catering">
-        </figure>
-        <h2><?php echo $_SESSION["nama"] ?></h2>
-        <p class="label">Deskripsi Toko</p>
-        <p><?php echo $_SESSION["deskripsi"] ?></p>
-        <p class="label">Nomer Telepon</p>
-        <p><?php echo $_SESSION["telepon"] ?></p>
-        <p class="label">Alamat Toko</p>
-        <p><?php echo $_SESSION["alamat"] ?></p>
+        <img src="../../uploads/benjamin-henon-ZAucxTNf9bw-unsplash.jpg" alt="Foto Profil Hena Catering">
+        <?php
+        $Penjual = new Penjual();
+        $Penjual->IDpenjual = $_SESSION["IDpenjual"];
+        $Penjual->getPenjual();
+        echo "<h2>$Penjual->nama</h2>";
+        echo '<p class="label">Deskripsi Toko</p>';
+        echo "<p>$Penjual->deskripsi</p>";
+        echo '<p class="label">Nomer Telepon</p>';
+        echo "<p>$Penjual->telepon</p>";
+        echo '<p class="label">Alamat Toko</p>';
+        echo "<p>$Penjual->alamat</p>";
+        ?>
         <a href="dashboard.php?p=profile&IDpenjual=<?php echo $_SESSION["IDpenjual"] ?>">
           <button>
             Edit Profile

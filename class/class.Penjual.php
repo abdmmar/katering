@@ -9,6 +9,7 @@ class Penjual extends Connection
   public $password = '';
   public $alamat = '';
   public $deskripsi = '';
+  public $foto = '';
 
   public $result = false;
   public $message = '';
@@ -21,6 +22,7 @@ class Penjual extends Connection
   public $COLUMN_PASSWORD = 'password';
   public $COLUMN_ALAMAT = 'alamat';
   public $COLUMN_DESKRIPSI = 'deskripsi';
+  public $COLUMN_FOTO = 'foto';
 
   public function ValidateEmailPenjual($inputEmail)
   {
@@ -41,6 +43,7 @@ class Penjual extends Connection
       $this->telepon = $data['telepon'];
       $this->alamat = $data['alamat'];
       $this->deskripsi = $data['deskripsi'];
+      $this->foto = $data['foto'];
     }
   }
 
@@ -50,7 +53,7 @@ class Penjual extends Connection
     $sql = "INSERT INTO '$this->TABLE_PENJUAL' 
             ('$this->COLUMN_NAMA', '$this->COLUMN_EMAIL', 
             '$this->COLUMN_TELEPON', '$this->COLUMN_PASSWORD', 
-            '$this->COLUMN_ALAMAT', '$this->DESKRIPSI')
+            '$this->COLUMN_ALAMAT', '$this->COLUMN_DESKRIPSI')
             VALUES ('$this->name', '$this->email', 
             '$this->telpon', '$this->password', '$this->alamat', '$this->deskripsi')";
 
@@ -68,12 +71,13 @@ class Penjual extends Connection
   public function UpdatePenjual()
   {
     $this->connect();
-    $sql = "UPDATE '$this->TABLE_PENJUAL'
+    $sql = "UPDATE $this->TABLE_PENJUAL
                     SET $this->COLUMN_NAMA = '$this->nama',
-                        $this->COLUM_EMAIL = '$this->email',
-                        $this->COLUMN_PASSWORD = '$this->password',
+                        $this->COLUMN_EMAIL = '$this->email',
                         $this->COLUMN_TELEPON = '$this->telepon',
                         $this->COLUMN_ALAMAT = '$this->alamat',
+                        $this->COLUMN_DESKRIPSI = '$this->deskripsi',
+                        $this->COLUMN_FOTO = '$this->foto'
                     WHERE $this->COLUMN_IDPENJUAL = '$this->IDpenjual'";
 
     $this->result = mysqli_query($this->connection, $sql);
@@ -111,6 +115,7 @@ class Penjual extends Connection
       $this->telepon = $data['telepon'];
       $this->alamat = $data['alamat'];
       $this->deskripsi = $data['deskripsi'];
+      $this->foto = $data['foto'];
     }
   }
 }
