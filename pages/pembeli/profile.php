@@ -85,7 +85,7 @@ if (isset($_POST["save-profile"])) {
             $srcText = $currentPhoto;
 
             if ($currentPhoto == '') {
-              $srcPhoto = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1200px-Placeholder_no_text.svg.png";
+              $srcPhoto = "../../uploads/Profile placeholder.png";
               $srcText = "Photo doesn't exist";
             }
             echo '<section class="current-photo-section">';

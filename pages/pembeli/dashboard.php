@@ -33,14 +33,16 @@ require "../../inc.connection.php";
       </div>
       <div>
         <ul class="feature">
-          <li class="icon">
-            <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=shopping-cart&fill=767676" width="24" height="24">
+          <li>
+            <a class="icon" href="dashboard.php?p=cart">
+              <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=shopping-cart&fill=767676" width="24" height="24">
+            </a>
             </svg>
           </li>
         </ul>
         <div class="profile" tabindex="0" role="button">
           <div class="profile-picture">
-            <img src="../../uploads/Monas.png" alt="Profile picture">
+            <img src="../../uploads/Profile placeholder.png" alt="Profile picture">
           </div>
           <div class="dropdown" style="float: right">
             <div class="dropdown-content">

@@ -64,7 +64,6 @@ class Pembeli extends Connection
     $sql = "UPDATE $this->TABLE_PEMBELI
                     SET $this->COLUMN_NAMA = '$this->nama',
                         $this->COLUMN_EMAIL = '$this->email',
-                        $this->COLUMN_PASSWORD = '$this->password',
                         $this->COLUMN_TELEPON = '$this->telepon'
                     WHERE $this->COLUMN_IDPEMBELI = '$this->IDpembeli'";
 

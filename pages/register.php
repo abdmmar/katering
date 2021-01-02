@@ -21,7 +21,7 @@ if (isset($_POST["register"])) {
     $Pembeli->password = password_hash($_POST["current-password"], PASSWORD_DEFAULT);
     $IDPembeli_Alamat = $Pembeli->addUser();
 
-    $Alamat->IDPembeli = $IDPembeli_Alamat;
+    $Alamat->IDpembeli = $IDPembeli_Alamat;
     $Alamat->alamat = $_POST["alamat"];
     $Alamat->addAlamat();
 

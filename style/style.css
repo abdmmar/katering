@@ -3,6 +3,7 @@
 @import "dashboard.css";
 @import "addMenu.css";
 @import "profile.css";
+@import "cart.css";
 
 :root {
   --desktop-font-size: 16px;
