@@ -1,6 +1,5 @@
 <?php
-
-
+$jmlMenu = 1;
 ?>
 
 <div class="container-cart">
@@ -17,15 +16,17 @@
                 Rp<span class="harga">15000</span>
               </strong>
             </p>
-            <div class="item-increment">
-              <button>
+            <form method="post" class="item-increment">
+              <button class="btn-minus">
                 <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=minus&fill=ffffff" width="18" height="18"></svg>
               </button>
-              <div class="total">0</div>
-              <button>
+              <!-- <input type="button" class="btn-minus" name="btn-minus" value="-" /> -->
+              <input type="text" class="total" value="<?php echo $jmlMenu ?>" />
+              <button class="btn-plus">
                 <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=plus&fill=ffffff" width="18" height="18"></svg>
               </button>
-            </div>
+              <!-- <input type="button" id="btn-plus" class="btn-plus" name="btn-plus" value="+" /> -->
+            </form>
           </div>
           <div class="btn-delete">
             <a class="icon" href="#">
@@ -45,7 +46,29 @@
           </strong>
         </p>
       </div>
-      <button>Beli</button>
+      <button class="beli">
+        <a href="dashboard.php?p=checkout">
+          <strong>Beli</strong>
+        </a>
+      </button>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  const btnMinus = document.querySelector(".btn-minus");
+  const btnPlus = document.querySelector(".btn-plus");
+
+  btnMinus.addEventListener("click", function(e) {
+    e.preventDefault();
+    let jmlMenu = document.querySelector(".total");
+    if (jmlMenu.value > 1) {
+      jmlMenu.value--;
+    }
+  });
+
+  btnPlus.addEventListener("click", function(e) {
+    e.preventDefault();
+    let jmlMenu = document.querySelector(".total");
+    jmlMenu.value++;
+  });
+</script>

@@ -1,0 +1,19 @@
+.list-item-container h3 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.alamat-container {
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.alamat-container h4 {
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.alamat {
+  color: #767676;
+}

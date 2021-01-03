@@ -25,6 +25,8 @@
 .list-item-container h2 {
   margin: 0;
   margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .list-item {
@@ -38,12 +40,14 @@
   display: flex;
   flex-direction: row;
   padding-bottom: 20px;
+  margin-bottom: 20px;
   border-bottom: 1px solid #dfdfdf;
 }
 
 .list-item .item:last-child {
   padding-bottom: 0;
   border-bottom: 0;
+  margin-bottom: 0;
 }
 
 .item > img {
@@ -86,14 +90,19 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  padding: 10px 15px;
+  padding: 0;
+  height: 100%;
+  max-width: 50px;
+  border: 0;
+  border-radius: 0;
 }
 
 .item-increment button {
   display: grid;
   place-items: center;
+  text-align: center;
   padding: 5px;
-  height: 28px;
+  height: fit-content;
 }
 
 .item .btn-delete {
@@ -138,4 +147,8 @@
 
 .shopping-summary button {
   width: 100%;
+}
+
+.shopping-summary .beli a {
+  color: white;
 }

@@ -4,6 +4,7 @@
 @import "addMenu.css";
 @import "profile.css";
 @import "cart.css";
+@import "checkout.css";
 
 :root {
   --desktop-font-size: 16px;
@@ -26,7 +27,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #f8f8f8;
+  background-color: #fcfcfc;
 }
 
 .container {
@@ -104,7 +105,8 @@ body {
 }
 
 button,
-input[type="submit"] {
+input[type="submit"],
+input[type="button"] {
   background-color: var(--green);
   border: none;
   border-radius: 3px;
