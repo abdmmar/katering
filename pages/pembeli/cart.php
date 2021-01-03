@@ -46,11 +46,11 @@ $jmlMenu = 1;
           </strong>
         </p>
       </div>
-      <button class="beli">
-        <a href="dashboard.php?p=checkout">
+      <a href="dashboard.php?p=checkout">
+        <button class="beli">
           <strong>Beli</strong>
-        </a>
-      </button>
+        </button>
+      </a>
     </div>
   </div>
 </div>
