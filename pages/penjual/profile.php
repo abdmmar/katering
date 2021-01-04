@@ -1,6 +1,5 @@
 <?php
 include './upload.php';
-require('../../class/class.Penjual.php');
 
 $currentNama = '';
 $currentEmail = '';

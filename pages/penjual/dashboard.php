@@ -28,6 +28,11 @@ require('../../class/class.Penjual.php');
       </div>
       <div>
         <ul class="feature">
+        <li>
+          <a href="dashboard.php?p=report" class="icon">
+            <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=document-report&fill=767676" width="24" height="24"></svg>
+          </a>
+        </li>
           <li>
             <a class="icon" href="dashboard.php?p=addMenu">
               <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=plus&fill=767676" width="24" height="24"></svg>
@@ -69,7 +74,7 @@ require('../../class/class.Penjual.php');
         echo '<h1></br>4😕4</h1>';
         echo '<h2>Halaman yang kamu cari ga ada!</h2>';
         echo '</br>';
-        echo '<a href="index.php">&larr; Go Home</a>';
+        echo '<a href="dashboard.php">&larr; Go Home</a>';
         echo '</div>';
       }
     } else {

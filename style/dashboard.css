@@ -108,6 +108,7 @@
   background-color: #ffffff;
   border-radius: 5px;
   box-shadow: 0px 1px 6px 0px rgba(49, 53, 59, 0.1);
+  height: fit-content;
 }
 
 .menu-item-info,
@@ -134,7 +135,7 @@
 
 .menu-action.pembeli {
   padding: 10px 0 0;
-  margin: 0 0 20px;
+  margin-bottom: 10px;
 }
 
 .menu-action.pembeli button {
@@ -142,7 +143,11 @@
   background-color: var(--green);
 }
 
-.menu-action.pembeli button a {
+.menu-action.pembeli a {
+  width: 100%;
+}
+
+.menu-action.pembeli a button {
   color: white;
 }
 
@@ -154,7 +159,7 @@
   margin-right: 0;
 }
 
-.menu-action button a {
+.menu-action a button {
   display: flex;
   align-items: center;
   color: #545454;
@@ -162,7 +167,7 @@
   justify-content: center;
 }
 
-.menu-action button a svg {
+.menu-action a button svg {
   margin-right: 5px;
 }
 
@@ -175,8 +180,7 @@
 }
 
 .menu-item img {
-  height: 100%;
-  max-height: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
 }

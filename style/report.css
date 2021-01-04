@@ -1,0 +1,83 @@
+.container-report {
+  display: grid;
+  place-items: center;
+  margin: 50px 0;
+}
+
+.report {
+  background-color: #ffffff;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  border-color: #dfdfdf;
+  border-spacing: 0;
+}
+
+table td {
+  background-color: #ffffff;
+  border-bottom-width: 1px;
+  border-color: #dfdfdf;
+  border-style: solid;
+  border-top-width: 1px;
+  border-width: 0px;
+  color: #002b36;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  padding: 10px 15px;
+  word-break: normal;
+}
+
+table th {
+  background-color: var(--green);
+  border-bottom-width: 1px;
+  border-color: #dfdfdf;
+  border-style: solid;
+  border-top-width: 1px;
+  border-width: 0px;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  overflow: hidden;
+  padding: 10px 15px;
+  word-break: normal;
+}
+
+table th:first-child {
+  border-radius: 3px 0 0 0;
+}
+
+table th:last-child {
+  border-radius: 0 3px 0 0;
+}
+
+table th,
+table td {
+  text-align: left;
+  vertical-align: top;
+}
+
+.transaction-item {
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.tr-item-list-menu ul {
+  margin: 0;
+}
+
+.tr-item-list-menu ul li {
+  list-style: circle;
+}
+
+.item:last-child td:first-child {
+  border-radius: 0 0 0 3px;
+}
+
+.item:last-child td:last-child {
+  border-radius: 0 0 3px 0;
+}

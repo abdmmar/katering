@@ -42,6 +42,11 @@ header {
 
 .feature li {
   border-radius: 5px;
+  margin-right: 10px;
+}
+
+.feature li:last-child {
+  margin-right: 0;
 }
 
 .icon {

@@ -148,3 +148,12 @@
 .shopping-summary button {
   width: 100%;
 }
+
+.addToCart {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--darker-green);
+}
