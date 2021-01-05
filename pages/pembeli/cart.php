@@ -47,7 +47,7 @@ $jmlMenu = 1;
             echo '      <button class="btn-minus">';
             echo '        <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=minus&fill=ffffff" width="18" height="18"></svg>';
             echo '      </button>';
-            echo '        <input type="number" min="1" class="total" value="' . $menuItem->jmlMenu . '" readonly/>';
+            echo '        <input type="number" min="1" class="total" value="' . $menuItem->jmlMenu . '"/>';
             echo '      <button class="btn-plus">';
             echo '        <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=plus&fill=ffffff" width="18" height="18"></svg>';
             echo '      </button>';
@@ -75,7 +75,7 @@ $jmlMenu = 1;
         <div class="label">Total Harga</div>
         <p class="label-harga">
           <strong>
-            Rp<span class="harga"><?php echo $totalHarga ?></span>
+            Rp<span class="total-harga"><?php echo $totalHarga ?></span>
           </strong>
         </p>
       </div>
@@ -89,6 +89,7 @@ $jmlMenu = 1;
 </div>
 <script type="text/javascript">
   const item = document.querySelectorAll(".item");
+  const hargaItem = document.querySelectorAll(".item .harga");
   const btnMinus = document.querySelectorAll(".btn-minus");
   const btnPlus = document.querySelectorAll(".btn-plus");
   let jmlMenu = document.querySelectorAll(".total");
@@ -99,13 +100,21 @@ $jmlMenu = 1;
     btnMinus[i].addEventListener("click", function(e) {
       e.preventDefault();
       if (jmlMenu[i].value > 1) {
+        const totalHarga = document.querySelector(".total-harga");
         jmlMenu[i].value--;
+        let totalHargaInt = parseInt(totalHarga.textContent);
+        totalHargaInt -= parseInt(hargaItem[i].textContent);
+        totalHarga.textContent = `${totalHargaInt}`;
       }
     });
 
     btnPlus[i].addEventListener("click", function(e) {
       e.preventDefault();
+      const totalHarga = document.querySelector(".total-harga");
+      let totalHargaInt = parseInt(totalHarga.textContent);
       jmlMenu[i].value++;
+      totalHargaInt = parseInt(hargaItem[i].textContent) * parseInt(jmlMenu[i].value);
+      totalHarga.textContent = `${totalHargaInt}`;
     });
   }
 
