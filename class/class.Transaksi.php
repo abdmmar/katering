@@ -38,7 +38,8 @@ class Transaksi extends Connection
     return $this->connection->insert_id;
   }
 
-  public function getMenuByPembeli(){
+  public function getOneTransaction()
+  {
     $this->connect();
     $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
     WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli";
@@ -52,10 +53,12 @@ class Transaksi extends Connection
       $this->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
       $this->IDpenjual = $data[$this->COLUMN_IDPENJUAL];
       $this->totalHarga = $data[$this->COLUMN_TOTALHARGA];
+      $this->status = $data[$this->COLUMN_STATUS];
     }
   }
 
-  public function updateTransacationTotalPrice(){
+  public function updateTransacationTotalPrice()
+  {
     $this->connect();
     $sql = "UPDATE $this->TABLE_TRANSAKSI
                     SET $this->COLUMN_TOTALHARGA = '$this->totalHarga'

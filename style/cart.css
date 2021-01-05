@@ -97,6 +97,10 @@
   border-radius: 0;
 }
 
+.item-increment .total:focus {
+  outline: none;
+}
+
 .item-increment button {
   display: grid;
   place-items: center;
@@ -113,10 +117,15 @@
 
 .btn-delete a {
   height: fit-content;
+  transition: all 300ms;
 }
 
 .btn-delete a:hover {
-  background-color: #f4f4f4;
+  background-color: #ef4444;
+}
+
+.btn-delete a:hover svg {
+  stroke: white;
 }
 
 .shopping-summary {
@@ -156,4 +165,25 @@
 
 input[type="submit"]:hover {
   background-color: var(--darker-green);
+}
+
+.empty-list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.empty-list-item h3 {
+  font-weight: 500;
+  color: #002b36;
+}
+
+.empty-list-item a {
+  color: var(--green);
+}
+
+.empty-list-item a:hover {
+  color: var(--darker-green);
 }

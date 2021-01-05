@@ -32,7 +32,8 @@ class DetailTransaksi extends Connection
     return $this->connection->insert_id;
   }
 
-  public function getMenu(){
+  public function getMenu()
+  {
     $this->connect();
     $sql = "SELECT * FROM $this->TABLE_DETAILTRANSAKSI 
             WHERE $this->COLUMN_MENUID = $this->menuID";
@@ -45,6 +46,45 @@ class DetailTransaksi extends Connection
       $this->menuID = $data[$this->COLUMN_MENUID];
       $this->kodeTransaksi = $data[$this->COLUMN_KODETRANSAKSI];
       $this->jmlMenu = $data[$this->COLUMN_JMLMENU];
+    }
+  }
+
+  public function getAllMenuByKodeTransaksi()
+  {
+    $this->connect();
+    $sql = "SELECT * FROM $this->TABLE_DETAILTRANSAKSI WHERE $this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi";
+    $result = mysqli_query($this->connection, $sql);
+    $arrayMenu = array();
+    $count = 0;
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($data = mysqli_fetch_array($result)) {
+        $DetailTransaksi = new DetailTransaksi();
+        $DetailTransaksi->menuID = $data[$this->COLUMN_MENUID];
+        $DetailTransaksi->kodeTransaksi = $data[$this->COLUMN_KODETRANSAKSI];
+        $DetailTransaksi->jmlMenu = $data[$this->COLUMN_JMLMENU];
+        $arrayMenu[$count] = $DetailTransaksi;
+        $count++;
+      }
+    } else {
+      $this->message = 'Belum ada menu di keranjang nih';
+    }
+
+    return $arrayMenu;
+  }
+
+  public function deleteMenu()
+  {
+    $this->connect();
+    $sql = "DELETE FROM $this->TABLE_DETAILTRANSAKSI 
+    WHERE $this->COLUMN_MENUID=$this->menuID 
+    AND $this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi";
+    $this->result = mysqli_query($this->connection, $sql);
+
+    if ($this->result) {
+      $this->message = 'Menu berhasil dihapus dari keranjang';
+    } else {
+      $this->message = 'Menu gagal dihapus dari keranjang';
     }
   }
 }
