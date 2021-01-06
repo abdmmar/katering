@@ -11,6 +11,11 @@
   padding: 20px;
 }
 
+.report h3 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
 table {
   border-collapse: collapse;
   border-color: #dfdfdf;
@@ -62,8 +67,20 @@ table td {
   vertical-align: top;
 }
 
+tbody tr:nth-child(even) td {
+  background-color: #f6f6f6;
+}
+
+.header {
+  border: 1px solid var(--green);
+  border-radius: 3px;
+}
+
 .transaction-item {
+  border-right: 1px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
   border-bottom: 1px solid #dfdfdf;
+  border-radius: 3px;
 }
 
 .tr-item-list-menu ul {

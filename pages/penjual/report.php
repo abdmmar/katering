@@ -1,5 +1,8 @@
 <div class="container-report">
   <div class="report">
+    <h3>
+      Laporan Transaksi
+    </h3>
     <table>
       <thead>
         <tr class="header">

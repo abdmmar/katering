@@ -73,6 +73,22 @@ class DetailTransaksi extends Connection
     return $arrayMenu;
   }
 
+  public function updateJumlahMenu()
+  {
+    $this->connect();
+    $sql = "UPDATE $this->TABLE_DETAILTRANSAKSI
+    SET $this->COLUMN_JMLMENU = $this->jmlMenu
+    WHERE $this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi 
+    AND $this->COLUMN_MENUID = $this->menuID";
+
+    $this->result = mysqli_query($this->connection, $sql);
+
+    if ($this->result)
+      $this->message = 'Jumlah menu berhasil diubah';
+    else
+      $this->message = 'Jumlah menu gagal diubah';
+  }
+
   public function deleteMenu()
   {
     $this->connect();

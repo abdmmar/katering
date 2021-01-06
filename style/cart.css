@@ -6,7 +6,7 @@
 .container-cart > div {
   display: flex;
   flex-direction: row;
-  margin-top: 50px;
+  margin: 50px 0;
   width: 100%;
   max-width: 1080px;
 }

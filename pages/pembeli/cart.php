@@ -5,6 +5,7 @@ require('../../class/class.DetailTransaksi.php');
 
 $arrayMenu = array();
 $totalHarga = 0;
+$kodeTransaksi = 0;
 
 if (isset($_SESSION["IDpembeli"])) {
   $Transaksi = new Transaksi();
@@ -13,11 +14,44 @@ if (isset($_SESSION["IDpembeli"])) {
   if ($Transaksi->status == 'inChart') {
     $DetailTransaksi = new DetailTransaksi();
     $DetailTransaksi->kodeTransaksi = $Transaksi->kodeTransaksi;
+    $kodeTransaksi = $Transaksi->kodeTransaksi;
     $arrayMenu = $DetailTransaksi->getAllMenuByKodeTransaksi();
 
     $totalHarga = $Transaksi->totalHarga;
   }
 }
+
+if (isset($_POST["beli"])) {
+  $currTotalHarga = $_POST["curr-total-harga"];
+  $totalMenu = $_POST["total-menu"];
+  $arrTotalMenu = explode(",", $totalMenu);
+  $result = false;
+
+  for ($i = 0; $i < count($arrayMenu); $i++) {
+    $DetailTransaksi = new DetailTransaksi();
+    $DetailTransaksi->kodeTransaksi = $arrayMenu[$i]->kodeTransaksi;
+    $DetailTransaksi->menuID = $arrayMenu[$i]->menuID;
+    $DetailTransaksi->jmlMenu = $arrTotalMenu[$i];
+    $DetailTransaksi->updateJumlahMenu();
+    $result = $DetailTransaksi->result;
+  }
+
+  if ($result) {
+    $Transaksi = new Transaksi();
+    $Transaksi->IDpembeli = $_SESSION["IDpembeli"];
+    $Transaksi->kodeTransaksi = $kodeTransaksi;
+    $Transaksi->totalHarga = $currTotalHarga;
+    $Transaksi->updateTransacationTotalPrice();
+
+    if ($Transaksi->result) {
+      echo "<script> alert('Transaksi berhasil di checkout'); </script>";
+      echo '<script> window.location="dashboard.php?p=checkout&kodeTransaksi=' . $kodeTransaksi . '"; </script>';
+    } else {
+      echo "<script> alert('Transaksi gagal di checkout'); </script>";
+    }
+  }
+}
+
 
 $jmlMenu = 1;
 ?>
@@ -79,32 +113,54 @@ $jmlMenu = 1;
           </strong>
         </p>
       </div>
-      <a href="dashboard.php?p=checkout">
-        <button class="beli">
-          <strong>Beli</strong>
-        </button>
-      </a>
+      <form action="" method="post">
+        <input type="hidden" class="curr-total-harga" name="curr-total-harga" value="<?php echo $totalHarga ?>">
+        <input type="hidden" class="total-menu" name="total-menu" value="">
+        <input type="submit" name="beli" class="beli" value="Beli">
+        </input>
+      </form>
     </div>
   </div>
 </div>
 <script type="text/javascript">
   const item = document.querySelectorAll(".item");
   const hargaItem = document.querySelectorAll(".item .harga");
+
   const btnMinus = document.querySelectorAll(".btn-minus");
   const btnPlus = document.querySelectorAll(".btn-plus");
-  let jmlMenu = document.querySelectorAll(".total");
   const btnDelete = document.querySelectorAll(".btn-delete");
   const dataToDelete = document.querySelectorAll(".btn-delete a");
 
+  const totalMenu = document.querySelector(".total-menu");
+  const currTotalHarga = document.querySelector(".curr-total-harga");
+
+  let jmlMenu = document.querySelectorAll(".total");
+  const arrTotalMenu = [];
+
   for (let i = 0; i < item.length; i++) {
+
+    arrTotalMenu[i] = jmlMenu[i].value;
+
+    if (item.length < 1) {
+      totalMenu.value = arrTotalMenu.join("");
+    }
+    totalMenu.value = arrTotalMenu.join(",");
+
     btnMinus[i].addEventListener("click", function(e) {
       e.preventDefault();
       if (jmlMenu[i].value > 1) {
         const totalHarga = document.querySelector(".total-harga");
+
+        //Set total menu
         jmlMenu[i].value--;
+        arrTotalMenu[i] = jmlMenu[i].value;
+
         let totalHargaInt = parseInt(totalHarga.textContent);
         totalHargaInt -= parseInt(hargaItem[i].textContent);
+
         totalHarga.textContent = `${totalHargaInt}`;
+        currTotalHarga.value = `${totalHargaInt}`;
+        totalMenu.value = arrTotalMenu.join(",");
       }
     });
 
@@ -112,11 +168,21 @@ $jmlMenu = 1;
       e.preventDefault();
       const totalHarga = document.querySelector(".total-harga");
       let totalHargaInt = parseInt(totalHarga.textContent);
+
       jmlMenu[i].value++;
-      totalHargaInt = parseInt(hargaItem[i].textContent) * parseInt(jmlMenu[i].value);
+      arrTotalMenu[i] = jmlMenu[i].value;
+
+      totalHargaInt += parseInt(hargaItem[i].textContent);
       totalHarga.textContent = `${totalHargaInt}`;
+      currTotalHarga.value = `${totalHargaInt}`;
+
+      totalMenu.value = arrTotalMenu.join(",");
     });
+
+
   }
+
+
 
   for (let i = 0; i < btnDelete.length; i++) {
     btnDelete[i].addEventListener("click", function() {

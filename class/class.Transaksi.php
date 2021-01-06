@@ -61,14 +61,15 @@ class Transaksi extends Connection
   {
     $this->connect();
     $sql = "UPDATE $this->TABLE_TRANSAKSI
-                    SET $this->COLUMN_TOTALHARGA = '$this->totalHarga'
-                    WHERE $this->COLUMN_KODETRANSAKSI = '$this->kodeTransaksi'";
+                    SET $this->COLUMN_TOTALHARGA = $this->totalHarga
+                    WHERE $this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi 
+                    AND $this->COLUMN_IDPEMBELI = $this->IDpembeli";
 
     $this->result = mysqli_query($this->connection, $sql);
 
     if ($this->result)
-      $this->message = 'Harga berhasil diubah';
+      $this->message = 'Data berhasil diubah';
     else
-      $this->message = 'Harga gagal diubah';
+      $this->message = 'Data gagal diubah';
   }
 }
