@@ -129,6 +129,17 @@
   padding: 10px;
 }
 
+.menu-action button a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #767676;
+}
+
+.menu-action button a svg {
+  margin-right: 5px;
+}
+
 .menu-item-info.pembeli {
   padding: 10px 20px;
 }

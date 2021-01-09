@@ -1,9 +1,25 @@
 <?php
-if (!isset($_SESSION)) {
-  session_start();
-}
+// if (!isset($_SESSION)) {
+//   session_start();
+// }
+require_once('./authorization.php');
 require "../../inc.connection.php";
 require('../../class/class.Penjual.php');
+
+$title = 'Hena Katering';
+
+if (isset($_GET['p'])) {
+  $title = $_GET['p'];
+  if ($title == 'addMenu') {
+    if (isset($_GET['menuID'])) {
+      $title = 'Edit Menu | Hena Katering';
+    } else {
+      $title = 'Add Menu | Hena Katering';
+    }
+  }
+
+  $title = ucfirst($title) . ' | Hena Katering';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +27,7 @@ require('../../class/class.Penjual.php');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hena Katering</title>
+  <title><?php echo $title ?></title>
   <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
   <link rel="stylesheet" href="../../style/style.css">
 </head>
@@ -28,11 +44,11 @@ require('../../class/class.Penjual.php');
       </div>
       <div>
         <ul class="feature">
-        <li>
-          <a href="dashboard.php?p=report" class="icon">
-            <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=document-report&fill=767676" width="24" height="24"></svg>
-          </a>
-        </li>
+          <li>
+            <a href="dashboard.php?p=report" class="icon">
+              <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=document-report&fill=767676" width="24" height="24"></svg>
+            </a>
+          </li>
           <li>
             <a class="icon" href="dashboard.php?p=addMenu">
               <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=plus&fill=767676" width="24" height="24"></svg>

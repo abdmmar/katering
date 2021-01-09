@@ -1,8 +1,15 @@
 <?php
-if (!isset($_SESSION)) {
-  session_start();
-}
+// if (!isset($_SESSION)) {
+//   session_start();
+// }
+require_once('./authorization.php');
 require "../../inc.connection.php";
+$title = 'Hena Katering';
+
+if (isset($_GET['p'])) {
+  $title = $_GET['p'];
+  $title = ucfirst($title) . ' | Hena Katering';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +17,7 @@ require "../../inc.connection.php";
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hena Katering</title>
+  <title><?php echo $title ?></title>
   <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
   <link rel="stylesheet" href="../../style/style.css">
 </head>
@@ -69,7 +76,7 @@ require "../../inc.connection.php";
         echo '<h1></br>4😕4</h1>';
         echo '<h2>Halaman yang kamu cari ga ada!</h2>';
         echo '</br>';
-        echo '<a href="index.php">&larr; Go Home</a>';
+        echo '<a href="dashboard.php">&larr; Go Home</a>';
         echo '</div>';
       }
     } else {
