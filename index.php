@@ -14,11 +14,13 @@
     <nav class="navbar">
       <div>
         <div class="logo">
-          <h2>Hena Catering</h2>
+          <a href="index.php">
+            <h2>Hena Catering</h2>
+          </a>
         </div>
-        <form class="search-input">
-          <input type="search" id="search" placeholder="Search">
-          <button class="btn-icon" type="submit">
+        <form class="search-input" method="GET">
+          <input type="search" id="search" name="search" placeholder="Search">
+          <button class="btn-icon" name="searchbtn" type="submit" value="search">
             <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=search&fill=ffffff" width="18" height="18"></svg>
           </button>
         </form>

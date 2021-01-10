@@ -29,6 +29,10 @@ header {
   justify-content: space-between;
 }
 
+.search-input input[type="submit"] {
+  width: fit-content;
+}
+
 .btn-icon {
   display: flex;
   align-items: center;

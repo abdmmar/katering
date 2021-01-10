@@ -2,10 +2,22 @@
 require('../../class/class.Menu.php');
 ?>
 <div class="container-dashboard">
+  <?php
+  if (isset($_GET["search"])) {
+    $keyword = $_GET["search"];
+    echo "<h4>Hasil pencarian '$keyword':</h4>";
+  }
+  ?>
   <div class="all-menu">
     <?php
     $Menu = new Menu();
     $listMenu = $Menu->getAllMenu();
+
+    if (isset($_GET["search"])) {
+      $keyword = $_GET["search"];
+      $listMenu = $Menu->getMenuByKeyword($keyword);
+    }
+
     foreach ($listMenu as $menu) {
       echo '<div class="menu-item">';
       echo '  <img src="../../uploads/' . $menu->gambar . '" alt="' . $menu->nama . '">';

@@ -1,15 +1,15 @@
 <?php
-// if (!isset($_SESSION)) {
-//   session_start();
-// }
 require_once('./authorization.php');
 require "../../inc.connection.php";
+
 $title = 'Hena Katering';
+$keyword = '';
 
 if (isset($_GET['p'])) {
   $title = $_GET['p'];
   $title = ucfirst($title) . ' | Hena Katering';
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +31,9 @@ if (isset($_GET['p'])) {
             <h2>Hena Catering</h2>
           </a>
         </div>
-        <form class="search-input">
-          <input type="search" id="search" placeholder="Search">
-          <button class="btn-icon" type="submit">
+        <form class="search-input" method="GET">
+          <input type="search" id="search" name="search" placeholder="Search">
+          <button class="btn-icon" name="searchbtn" type="submit" value="search">
             <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=search&fill=ffffff" width="18" height="18"></svg>
           </button>
         </form>
