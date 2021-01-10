@@ -23,7 +23,6 @@ if (isset($_SESSION["IDpembeli"]) && isset($_GET["kodeTransaksi"])) {
 
 $jmlMenu = 1;
 ?>
-
 <div class="container-cart">
   <div>
     <div class="list-item-container">
@@ -82,23 +81,6 @@ $jmlMenu = 1;
           echo '</div>';
         };
         ?>
-        <!-- <div class="item">
-          <img src="../../uploads/asnim-ansari-SqYmTDQYMjo-unsplash.jpg" alt="Menu">
-          <div class="item-info">
-            <p>Grilled Cheese Sandwich</p>
-            <p class="label-harga">
-              <strong>
-                Rp<span class="harga">15000</span>
-              </strong>
-            </p>
-            <div class="jmlMenu">5</div>
-          </div>
-          <div class="btn-delete">
-            <a class="icon" href="#">
-              <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=trash&fill=767676" width="24" height="24"></svg>
-            </a>
-          </div>
-        </div> -->
       </div>
     </div>
     <div class="shopping-summary">
@@ -116,4 +98,5 @@ $jmlMenu = 1;
       </button>
     </div>
   </div>
+</div>
 </div>

@@ -6,7 +6,9 @@ require('./class/class.Menu.php');
   <?php
   if (isset($_GET["search"])) {
     $keyword = $_GET["search"];
-    echo "<h4>Hasil pencarian '$keyword':</h4>";
+    echo '<div class="search-result">';
+    echo "<h3>Hasil pencarian '$keyword':</h3>";
+    echo '</div>';
   }
   ?>
   <div class="all-menu">

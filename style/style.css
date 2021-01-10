@@ -105,6 +105,10 @@ body {
   width: calc(100% - 20px);
 }
 
+.penjual-container select {
+  width: 100%;
+}
+
 button,
 input[type="submit"],
 input[type="button"] {
@@ -162,7 +166,8 @@ form {
 }
 
 input,
-textarea {
+textarea,
+select {
   border: 1px solid rgb(227, 227, 227);
   background-color: rgb(247, 247, 247);
   border-radius: 3px;

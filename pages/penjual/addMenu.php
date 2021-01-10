@@ -1,21 +1,30 @@
 <?php
 include './upload.php';
 require('../../class/class.Menu.php');
+require('../../class/class.Kategori.php');
 
 $currentName = '';
 $currentPicture = '';
 $currentDescription = '';
-$currentCategory = '';
+$currentCategory = 0;
 $currentPrice = '';
+$arrCategory = array(1 => "Makanan", 2 => "Minuman");
 
 if (isset($_GET['menuID'])) {
   $Menu = new Menu();
+  $Kategori = new Kategori();
+
   $Menu->menuID = $_GET['menuID'];
   $Menu->getMenu();
+
+  $Kategori->menuID = $_GET["menuID"];
+  $Kategori->getKategoriByMenu();
+
   $currentName = $Menu->nama;
   $currentPicture = $Menu->gambar;
   $currentDescription = $Menu->deskripsi;
   $currentPrice = $Menu->harga;
+  $currentCategory = $Kategori->IDKategori;
 }
 
 if (isset($_POST["add-menu"])) {
@@ -33,27 +42,40 @@ if (isset($_POST["add-menu"])) {
     $uploaded = addFile($inputFile);
     $currentPicture = $inputFile["name"];
 
-    if (file_exists($target_file)) {
-      unlink($target_file);
+    if (isset($_GET["menuID"])) {
+      if (file_exists($target_file)) {
+        unlink($target_file);
+      }
     }
   } else if ($currentPicture != '') {
     $uploaded[1] = 1;
   }
 
   $Menu = new Menu();
+  $Kategori = new Kategori();
 
   if ($uploaded[1] == 1) {
-    $Menu->menuID = $_GET["menuID"];
     $Menu->nama = $inputName;
     $Menu->gambar = $currentPicture;
     $Menu->deskripsi = $inputDescription;
     $Menu->harga = $inputPrice;
     $Menu->IDpenjual = $_SESSION["IDpenjual"];
 
+    $Kategori->namakategori = $arrCategory[$inputCategory];
+    $Kategori->IDKategori = $inputCategory;
+
     if (isset($_GET["menuID"])) {
+      $Menu->menuID = $_GET["menuID"];
+      $Kategori->menuID = $_GET["menuID"];
       $Menu->updateMenu();
+      $Kategori->updateKategori();
     } else {
-      $Menu->addMenu();
+      $menuID = $Menu->addMenu();
+
+      $Kategori->menuID = $menuID;
+      $Kategori->namakategori = $arrCategory[$inputCategory];
+      $Kategori->IDKategori = $inputCategory;
+      $Kategori->addKategori();
     }
 
     if ($Menu->result) {
@@ -97,7 +119,18 @@ if (isset($_POST["add-menu"])) {
 
       <section class="menu-category-section">
         <label for="category">Kategori</label>
-        <input type="text" id="category" name="category" placeholder="Misal: Minuman, Makananan, dll" autocomplete="category" required autofocus />
+        <select name="category" id="category">
+          <?php
+          foreach ($arrCategory as $key => $value) {
+            if ($key == $currentCategory) {
+              echo '<option value="' . $key . '" selected>' . $value . '</option>';
+            } else {
+              echo '<option value="' . $key . '">' . $value . '</option>';
+            }
+          }
+          ?>
+        </select>
+        <!-- <input type="text" id="category" name="category" placeholder="Misal: Minuman, Makananan, dll" value="<?php echo $currentCategory ?>" autocomplete=" category" required autofocus /> -->
       </section>
 
       <section class="menu-price-section">
