@@ -2,6 +2,7 @@
 include '../inc.connection.php';
 require('../class/class.Pembeli.php');
 require('../class/class.Alamat.php');
+require('../class/class.Mail.php');
 
 if (isset($_POST["register"])) {
   $inputEmail = $_POST["email"];
@@ -15,7 +16,8 @@ if (isset($_POST["register"])) {
   if ($Pembeli->result) {
     echo "<script> alert('Email sudah terdaftar'); </script>";
   } else {
-    $Pembeli->nama = $_POST["nama"];
+    $nama = $_POST["nama"];
+    $Pembeli->nama = $nama;
     $Pembeli->email = $inputEmail;
     $Pembeli->telepon = $_POST["telepon"];
     $Pembeli->password = password_hash($_POST["current-password"], PASSWORD_DEFAULT);
@@ -26,6 +28,18 @@ if (isset($_POST["register"])) {
     $Alamat->addAlamat();
 
     if ($Pembeli->result) {
+      //Get register email template
+      $message =  file_get_contents('template_email_register.php');
+
+      //Set content of email
+      $header = "Registrasi berhasil";
+      $message = str_replace("{EMAIL_TITLE}", $header, $message);
+      $message = str_replace("{TO_NAME}", $nama, $message);
+
+      //Send register notification to email 
+      $objMail = new Mail();
+      $objMail->SendMail($inputEmail, $nama, 'Registrasi berhasil', $message);
+
       echo "<script> alert('Registrasi berhasil'); </script>";
       echo '<script> window.location="login.php"; </script>';
     }
