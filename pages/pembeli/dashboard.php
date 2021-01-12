@@ -57,8 +57,9 @@ if (isset($_GET['p'])) {
               <a href="dashboard.php?p=profile&IDpembeli=<?php echo $_SESSION["IDpembeli"] ?>" tabindex="1">Profile</a>
               <a href="dashboard.php?p=logout" tabindex="2">Logout</a>
             </div>
-            <div>
-            </div>
+          </div>
+        </div>
+      </div>
     </nav>
   </header>
   <main>
@@ -92,6 +93,12 @@ if (isset($_GET['p'])) {
     dropdown.addEventListener('click', () => {
       dropdownContent.classList.add('show');
     })
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('p') === 'checkout') {
+      const header = document.querySelector('header');
+      header.classList.add('navbar-checkout');
+    }
   </script>
 </body>
 

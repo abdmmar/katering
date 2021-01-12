@@ -5,6 +5,7 @@ Sistem Pemesanan Katering
 ### Requirements
 
 1. XAMPP
+2. Composer
 
 ### Setup
 
@@ -20,3 +21,10 @@ Sistem Pemesanan Katering
 8. Add `EMAIL` and `PASS` variable, see `.env.example` to more detail
 9. Open `localhost/your_folder_name` in the browser to run system locally.
 10. Happy developing!
+
+### Get Current Setup
+
+1. Go to your folder in htdocs
+2. Open terminal
+3. `git pull` to get the latest development
+4. `composer install` to install dependencies
