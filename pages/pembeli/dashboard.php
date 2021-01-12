@@ -85,7 +85,38 @@ if (isset($_GET['p'])) {
     }
     ?>
   </main>
-  <footer></footer>
+  <footer>
+    <div class="footer-info">
+      <h3>Hena Katering</h3>
+      <div class="footer-desc">
+        <?php
+        require('../../class/class.Penjual.php');
+
+        $Penjual = new Penjual();
+        $Penjual->getInfoPenjual();
+
+        if ($Penjual->result) {
+          echo '<p>' . $Penjual->deskripsi . '</p>';
+          echo '<div>';
+          echo '<h4>Alamat</h4>';
+          echo "<p>$Penjual->alamat</p>";
+          echo '<h4>Kontak</h4>';
+          echo "<p>WA/Telp: $Penjual->telepon</p>";
+          echo '</div>';
+        } else {
+          echo '<p>Hena Katering adalah tempat yang menyediakan berbagai menu pilihan mulai dari nasi box hingga jajanan tradisional</p>';
+          echo '<div>
+          <h4>Alamat</h4>
+          <p>Margonda, Depok</p>
+          <h4>Kontak</h4>
+          <p>Telp/WA: 0815423678</p>
+        </div>';
+        }
+        ?>
+      </div>
+      <p class="copyright">© 2021, Hena Katering.</p>
+    </div>
+  </footer>
   <script type="text/javascript" src="https://unpkg.com/external-svg-loader@0.0.6/svg-loader.min.js" async></script>
   <script>
     const dropdown = document.querySelector('.dropdown');
@@ -97,7 +128,9 @@ if (isset($_GET['p'])) {
     const params = new URLSearchParams(window.location.search);
     if (params.get('p') === 'checkout') {
       const header = document.querySelector('header');
+      const footer = document.querySelector('footer');
       header.classList.add('navbar-checkout');
+      footer.style.display = 'none';
     }
   </script>
 </body>

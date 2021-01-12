@@ -5,7 +5,7 @@ Sistem Pemesanan Katering
 ### Requirements
 
 1. XAMPP
-2. Composer
+2. [Composer](https://getcomposer.org/download/)
 
 ### Setup
 

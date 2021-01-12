@@ -21,6 +21,10 @@ header {
   margin-right: 3rem;
 }
 
+.logo a {
+  color: var(--green);
+}
+
 .search-input {
   width: 500px;
   display: flex;
