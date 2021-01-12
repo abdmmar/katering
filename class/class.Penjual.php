@@ -118,4 +118,20 @@ class Penjual extends Connection
       $this->foto = $data['foto'];
     }
   }
+
+  public function getInfoPenjual()
+  {
+    $this->connect();
+    $sql = "SELECT * FROM $this->TABLE_PENJUAL";
+    $result = mysqli_query($this->connection, $sql);
+
+    if (mysqli_num_rows($result) == 1) {
+      $this->result = true;
+      $data = mysqli_fetch_assoc($result);
+      $this->nama = $data['nama'];
+      $this->telepon = $data['telepon'];
+      $this->alamat = $data['alamat'];
+      $this->deskripsi = $data['deskripsi'];
+    }
+  }
 }
