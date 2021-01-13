@@ -1,5 +1,6 @@
 <?php
 include '../inc.connection.php';
+require '../vendor/autoload.php';
 require('../class/class.Pembeli.php');
 require('../class/class.Alamat.php');
 require('../class/class.Mail.php');
@@ -29,11 +30,14 @@ if (isset($_POST["register"])) {
 
     if ($Pembeli->result) {
       //Get register email template
-      $message =  file_get_contents('template_email_register.php');
+      $message =  file_get_contents('../mail/template_email.php');
 
       //Set content of email
       $header = "Registrasi berhasil";
+      $body = "Selamat anda telah terdaftar pada sistem pemesanan katering di Hena Katering. Silahkan login untuk memesan menu kateringmu!<br>";
+
       $message = str_replace("{EMAIL_TITLE}", $header, $message);
+      $message = str_replace("{EMAIL_BODY}", $body, $message);
       $message = str_replace("{TO_NAME}", $nama, $message);
 
       //Send register notification to email 

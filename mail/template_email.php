@@ -22,7 +22,7 @@
 			<p>Hi {TO_NAME},</p>
 
 			<span style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #57697e;">
-				Selamat anda telah terdaftar pada sistem pemesanan katering di Hena Katering. Silahkan login untuk memesan menu kateringmu!<br>
+				{EMAIL_BODY}
 			</span>
 
 			<p style="display: flex; margin: 0; margin-top: 20px;">

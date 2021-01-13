@@ -61,7 +61,11 @@ header {
   position: relative;
 }
 
-.feature .notification::after {
+[data-notif="0"]::after {
+  display: none;
+}
+
+.feature #notification::after {
   content: attr(data-notif);
   position: absolute;
   top: -2px;

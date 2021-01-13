@@ -58,11 +58,40 @@ class Transaksi extends Connection
     }
   }
 
+  public function getAllTransactionPayment()
+  {
+    $this->connect();
+    $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
+    WHERE $this->COLUMN_IDPENJUAL = $this->IDpenjual AND NOT $this->COLUMN_STATUS = 'inChart'";
+
+    $result = mysqli_query($this->connection, $sql);
+    $arrayTransaction = array();
+    $count = 0;
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($data = mysqli_fetch_array($result)) {
+        $Transaksi = new Transaksi();
+        $Transaksi->kodeTransaksi = $data[$this->COLUMN_KODETRANSAKSI];
+        $Transaksi->IDpembeli = $data[$this->COLUMN_IDPEMBELI];
+        $Transaksi->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
+        $Transaksi->totalHarga = $data[$this->COLUMN_TOTALHARGA];
+        $Transaksi->status = $data[$this->COLUMN_STATUS];
+        $arrayTransaction[$count] = $Transaksi;
+        $count++;
+      }
+      $this->result = true;
+    } else {
+      $this->message = 'Belum ada pemesanan nih!';
+    }
+
+    return $arrayTransaction;
+  }
+
   public function getTransactionPayment()
   {
     $this->connect();
     $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
-    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli AND $this->COLUMN_STATUS = 'pendingPayment'";
+    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli AND $this->COLUMN_STATUS = 'inChart'";
 
     $result = mysqli_query($this->connection, $sql);
 
@@ -72,6 +101,21 @@ class Transaksi extends Connection
       $this->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
       $this->totalHarga = $data[$this->COLUMN_TOTALHARGA];
       $this->status = $data[$this->COLUMN_STATUS];
+    }
+  }
+
+  public function getCountTransactionPending()
+  {
+    $this->connect();
+    $sql = "SELECT COUNT(*) as countTransaction 
+            FROM $this->TABLE_TRANSAKSI
+            WHERE $this->COLUMN_IDPENJUAL = $this->IDpenjual 
+            AND $this->COLUMN_STATUS = 'pendingPayment'";
+
+    $this->result = mysqli_query($this->connection, $sql);
+    $count = mysqli_fetch_assoc($this->result);
+    if ($this->result) {
+      return $count['countTransaction'];
     }
   }
 
@@ -107,18 +151,19 @@ class Transaksi extends Connection
       $this->message = 'Data gagal diubah';
   }
 
-  public function getCountTransactionPending()
+  public function updateTransacationStatusByPenjual()
   {
     $this->connect();
-    $sql = "SELECT COUNT(*) as countTransaction 
-            FROM $this->TABLE_TRANSAKSI
-            WHERE $this->COLUMN_IDPENJUAL = $this->IDpenjual 
-            AND $this->COLUMN_STATUS = 'pendingPayment'";
+    $sql = "UPDATE $this->TABLE_TRANSAKSI
+                    SET $this->COLUMN_STATUS = '$this->status'
+                    WHERE $this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi 
+                    AND $this->COLUMN_IDPENJUAL = $this->IDpenjual";
 
     $this->result = mysqli_query($this->connection, $sql);
-    $count = mysqli_fetch_assoc($this->result);
-    if ($this->result) {
-      return $count['countTransaction'];
-    }
+
+    if ($this->result)
+      $this->message = 'Data berhasil diubah';
+    else
+      $this->message = 'Data gagal diubah';
   }
 }

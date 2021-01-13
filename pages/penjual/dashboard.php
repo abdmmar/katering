@@ -42,20 +42,22 @@ if (isset($_GET['p'])) {
       </div>
       <div>
         <ul class="feature">
-          <li>
-            <a href="dashboard.php?p=notification" class="icon notification" <?php
-                                                                              if (isset($_SESSION["IDpenjual"])) {
-                                                                                $Transaksi = new Transaksi();
-                                                                                $Transaksi->IDpenjual = $_SESSION["IDpenjual"];
-                                                                                $count = $Transaksi->getCountTransactionPending();
+          <li class="notification">
+            <a href="dashboard.php?p=transaction" class="icon" id="notification" <?php
+                                                                                  if (isset($_SESSION["IDpenjual"])) {
+                                                                                    $Transaksi = new Transaksi();
+                                                                                    $Transaksi->IDpenjual = $_SESSION["IDpenjual"];
+                                                                                    $count = $Transaksi->getCountTransactionPending();
 
-                                                                                if ($Transaksi->result) {
-                                                                                  if ($count > 0) {
-                                                                                    echo 'data-notif="' . $count, '"';
+                                                                                    if ($Transaksi->result) {
+                                                                                      if ($count > 0) {
+                                                                                        echo 'data-notif="' . $count, '"';
+                                                                                      } else {
+                                                                                        echo 'data-notif="0"';
+                                                                                      }
+                                                                                    }
                                                                                   }
-                                                                                }
-                                                                              }
-                                                                              ?>>
+                                                                                  ?>>
               <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=bell&fill=767676" width="24" height="24"></svg>
             </a>
           </li>
@@ -147,14 +149,24 @@ if (isset($_GET['p'])) {
   <script>
     const dropdown = document.querySelector('.dropdown');
     const dropdownContent = document.querySelector('.dropdown-content');
+    const notification = document.querySelector('#notification');
     const inputFile = document.querySelector('#photoName');
 
-    inputFile.oninput = function() {
-      let message = ''
-      if (inputFile.length === 0) {
-        message = 'Upload your photo'
+    // if (notification != undefined) {
+    //   notification.addEventListener('click', () => {
+    //     delete notification.dataset.notif
+    //     console.log("clicked");
+    //   })
+    // }
+
+    if (inputFile != undefined) {
+      inputFile.oninput = function() {
+        let message = ''
+        if (inputFile.length === 0) {
+          message = 'Upload your photo'
+        }
+        inputFile.setCustomValidity(message);
       }
-      inputFile.setCustomValidity(message);
     }
 
     dropdown.addEventListener('click', () => {
