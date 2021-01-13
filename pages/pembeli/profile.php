@@ -9,9 +9,9 @@ $currentEmail = '';
 $currentAddress = '';
 $currentPhoto = '';
 
-if (isset($_GET['IDpembeli'])) {
+if (isset($_SESSION['IDpembeli'])) {
   $Pembeli = new Pembeli();
-  $Pembeli->IDpembeli = $_GET['IDpembeli'];
+  $Pembeli->IDpembeli = $_SESSION['IDpembeli'];
   $Pembeli->getUser();
 
   $Alamat = new Alamat();
@@ -33,20 +33,19 @@ if (isset($_POST["save-profile"])) {
   $inputAddress = $_POST["alamat"];
   $uploaded = array("Choose your file before submit", 1);
 
-  // if ($inputPhoto["name"] != '') {
-  //   $target_dir = "../../uploads/";
-  //   $target_file = $target_dir . basename($currentPhoto);
+  if ($inputPhoto["name"] != '') {
+    $target_dir = "../../uploads/";
+    $target_file = $target_dir . basename($currentPhoto);
 
-  //   $uploaded = addFile($inputPhoto);
-  //   $currentPhoto = $inputPhoto["name"];
+    $uploaded = addFile($inputPhoto);
+    $currentPhoto = $inputPhoto["name"];
 
-  //   if (file_exists($target_file)) {
-  //     unlink($target_file);
-  //   }
-  // } else if ($currentPhoto != '') {
-  //   $uploaded[1] = 1;
-  // }
-
+    if (file_exists($target_file)) {
+      unlink($target_file);
+    }
+  } else if ($currentPhoto != '') {
+    $uploaded[1] = 1;
+  }
 
   if ($uploaded[1] == 1) {
     $Pembeli = new Pembeli();

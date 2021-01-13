@@ -57,11 +57,44 @@ class Transaksi extends Connection
     }
   }
 
+  public function getTransactionPayment()
+  {
+    $this->connect();
+    $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
+    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli AND $this->COLUMN_STATUS = 'pendingPayment'";
+
+    $result = mysqli_query($this->connection, $sql);
+
+    if (mysqli_num_rows($result) == 1) {
+      $this->result = true;
+      $data = mysqli_fetch_assoc($result);
+      $this->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
+      $this->totalHarga = $data[$this->COLUMN_TOTALHARGA];
+      $this->status = $data[$this->COLUMN_STATUS];
+    }
+  }
+
   public function updateTransacationTotalPrice()
   {
     $this->connect();
     $sql = "UPDATE $this->TABLE_TRANSAKSI
                     SET $this->COLUMN_TOTALHARGA = $this->totalHarga
+                    WHERE $this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi 
+                    AND $this->COLUMN_IDPEMBELI = $this->IDpembeli";
+
+    $this->result = mysqli_query($this->connection, $sql);
+
+    if ($this->result)
+      $this->message = 'Data berhasil diubah';
+    else
+      $this->message = 'Data gagal diubah';
+  }
+
+  public function updateTransacationStatus()
+  {
+    $this->connect();
+    $sql = "UPDATE $this->TABLE_TRANSAKSI
+                    SET $this->COLUMN_STATUS = '$this->status'
                     WHERE $this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi 
                     AND $this->COLUMN_IDPEMBELI = $this->IDpembeli";
 

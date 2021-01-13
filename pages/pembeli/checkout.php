@@ -7,6 +7,7 @@ require('../../class/class.Alamat.php');
 
 $arrayMenu = array();
 $totalHarga = 0;
+$kodeTransaksi = 0;
 
 if (isset($_SESSION["IDpembeli"]) && isset($_GET["kodeTransaksi"])) {
   $Transaksi = new Transaksi();
@@ -15,9 +16,24 @@ if (isset($_SESSION["IDpembeli"]) && isset($_GET["kodeTransaksi"])) {
   if ($Transaksi->status == 'inChart') {
     $DetailTransaksi = new DetailTransaksi();
     $DetailTransaksi->kodeTransaksi = $Transaksi->kodeTransaksi;
+    $kodeTransaksi = $Transaksi->kodeTransaksi;
     $arrayMenu = $DetailTransaksi->getAllMenuByKodeTransaksi();
 
     $totalHarga = $Transaksi->totalHarga;
+  }
+}
+
+if (isset($_POST["bayar"]) && isset($_GET["kodeTransaksi"])) {
+  $Transaksi = new Transaksi();
+  $Transaksi->IDpembeli = $_SESSION["IDpembeli"];
+  $Transaksi->kodeTransaksi = $_GET["kodeTransaksi"];
+  $Transaksi->status = 'pendingPayment';
+  $Transaksi->updateTransacationStatus();
+
+  if ($Transaksi->result) {
+    echo '<script> window.location="dashboard.php?p=checkout&kodeTransaksi=' . $kodeTransaksi . '"; </script>';
+  } else {
+    echo "<script> alert('Gagal untuk melakukan pembayaran'); </script>";
   }
 }
 
@@ -93,9 +109,14 @@ $jmlMenu = 1;
           </strong>
         </p>
       </div>
-      <button class="bayar">
-        <strong>Bayar</strong>
-      </button>
+      <form action="" method="POST">
+        <input type="submit" name="bayar" class="bayar" value="Bayar">
+      </form>
+      <!-- <a href="dashboard.php?p=payment&kodeTransaksi=<?php echo $kodeTransaksi ?>">
+        <button class="bayar">
+          <strong>Bayar</strong>
+        </button>
+      </a> -->
     </div>
   </div>
 </div>

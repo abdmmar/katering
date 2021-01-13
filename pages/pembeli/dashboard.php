@@ -54,8 +54,9 @@ if (isset($_GET['p'])) {
           <div class="dropdown" style="float: right">
             <div class="dropdown-content">
               <h4><?php echo $_SESSION["nama"] ?></h4>
-              <a href="dashboard.php?p=profile&IDpembeli=<?php echo $_SESSION["IDpembeli"] ?>" tabindex="1">Profile</a>
-              <a href="dashboard.php?p=logout" tabindex="2">Logout</a>
+              <a href="dashboard.php?p=profile" tabindex="1">Profile</a>
+              <a href="dashboard.php?p=payment" tabindex="2">Pembelian</a>
+              <a href="dashboard.php?p=logout" tabindex="3">Logout</a>
             </div>
           </div>
         </div>

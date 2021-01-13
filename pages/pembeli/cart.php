@@ -44,7 +44,6 @@ if (isset($_POST["beli"])) {
     $Transaksi->updateTransacationTotalPrice();
 
     if ($Transaksi->result) {
-      echo "<script> alert('Transaksi berhasil di checkout'); </script>";
       echo '<script> window.location="dashboard.php?p=checkout&kodeTransaksi=' . $kodeTransaksi . '"; </script>';
     } else {
       echo "<script> alert('Transaksi gagal di checkout'); </script>";
