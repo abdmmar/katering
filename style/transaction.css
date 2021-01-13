@@ -1,0 +1,9 @@
+.transactionFinish:disabled {
+  background-color: #dfdfdf;
+  color: #767676;
+}
+
+.transactionFinish:disabled:hover {
+  background-color: #dfdfdf;
+  color: #767676;
+}

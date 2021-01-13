@@ -8,6 +8,7 @@
 @import "report.css";
 @import "footer.css";
 @import "payment.css";
+@import "transaction.css";
 
 :root {
   --desktop-font-size: 16px;
