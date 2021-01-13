@@ -1,10 +1,8 @@
 <?php
-// if (!isset($_SESSION)) {
-//   session_start();
-// }
 require_once('./authorization.php');
 require "../../inc.connection.php";
 require('../../class/class.Penjual.php');
+require('../../class/class.Transaksi.php');
 
 $title = 'Hena Katering';
 
@@ -44,6 +42,23 @@ if (isset($_GET['p'])) {
       </div>
       <div>
         <ul class="feature">
+          <li>
+            <a href="dashboard.php?p=notification" class="icon notification" <?php
+                                                                              if (isset($_SESSION["IDpenjual"])) {
+                                                                                $Transaksi = new Transaksi();
+                                                                                $Transaksi->IDpenjual = $_SESSION["IDpenjual"];
+                                                                                $count = $Transaksi->getCountTransactionPending();
+
+                                                                                if ($Transaksi->result) {
+                                                                                  if ($count > 0) {
+                                                                                    echo 'data-notif="' . $count, '"';
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                              ?>>
+              <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=bell&fill=767676" width="24" height="24"></svg>
+            </a>
+          </li>
           <li>
             <a href="dashboard.php?p=report" class="icon">
               <svg data-src="https://s.svgbox.net/hero-outline.svg?ic=document-report&fill=767676" width="24" height="24"></svg>
@@ -103,8 +118,6 @@ if (isset($_GET['p'])) {
       <h3>Hena Katering</h3>
       <div class="footer-desc">
         <?php
-        require('../../class/class.Penjual.php');
-
         $Penjual = new Penjual();
         $Penjual->getInfoPenjual();
 

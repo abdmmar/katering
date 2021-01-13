@@ -10,6 +10,7 @@ class Transaksi extends Connection
 
   public $result = false;
   public $message = '';
+  public $count = 0;
 
   public $TABLE_TRANSAKSI = 'transaksi';
   public $COLUMN_KODETRANSAKSI = 'kodetransaksi';
@@ -104,5 +105,20 @@ class Transaksi extends Connection
       $this->message = 'Data berhasil diubah';
     else
       $this->message = 'Data gagal diubah';
+  }
+
+  public function getCountTransactionPending()
+  {
+    $this->connect();
+    $sql = "SELECT COUNT(*) as countTransaction 
+            FROM $this->TABLE_TRANSAKSI
+            WHERE $this->COLUMN_IDPENJUAL = $this->IDpenjual 
+            AND $this->COLUMN_STATUS = 'pendingPayment'";
+
+    $this->result = mysqli_query($this->connection, $sql);
+    $count = mysqli_fetch_assoc($this->result);
+    if ($this->result) {
+      return $count['countTransaction'];
+    }
   }
 }

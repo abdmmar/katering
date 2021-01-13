@@ -57,6 +57,22 @@ header {
   margin-right: 0;
 }
 
+.feature .notification {
+  position: relative;
+}
+
+.feature .notification::after {
+  content: attr(data-notif);
+  position: absolute;
+  top: -2px;
+  right: 3px;
+  font-size: 10px;
+  background-color: #ef4444;
+  padding: 2px 5px;
+  border-radius: 50px;
+  color: white;
+}
+
 .icon {
   display: flex;
   align-items: center;
