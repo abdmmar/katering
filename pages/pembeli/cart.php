@@ -61,7 +61,7 @@ $jmlMenu = 1;
       <h2>Keranjang Belanja</h2>
       <div class="list-item">
         <?php
-        if ($arrayMenu > 0) {
+        if (sizeof($arrayMenu) > 0) {
           foreach ($arrayMenu as $menuItem) {
             $Menu = new Menu();
             $Menu->menuID = $menuItem->menuID;
@@ -129,12 +129,19 @@ $jmlMenu = 1;
   const btnPlus = document.querySelectorAll(".btn-plus");
   const btnDelete = document.querySelectorAll(".btn-delete");
   const dataToDelete = document.querySelectorAll(".btn-delete a");
+  const beli = document.querySelector(".beli");
 
   const totalMenu = document.querySelector(".total-menu");
   const currTotalHarga = document.querySelector(".curr-total-harga");
 
   let jmlMenu = document.querySelectorAll(".total");
   const arrTotalMenu = [];
+
+
+  if (parseInt(currTotalHarga.value) === 0) {
+    console.log(true);
+    beli.disabled = true;
+  }
 
   for (let i = 0; i < item.length; i++) {
 
@@ -180,8 +187,6 @@ $jmlMenu = 1;
 
 
   }
-
-
 
   for (let i = 0; i < btnDelete.length; i++) {
     btnDelete[i].addEventListener("click", function() {

@@ -56,7 +56,8 @@ if (isset($_GET['p'])) {
               <h4><?php echo $_SESSION["nama"] ?></h4>
               <a href="dashboard.php?p=profile" tabindex="1">Profile</a>
               <a href="dashboard.php?p=payment" tabindex="2">Pembelian</a>
-              <a href="dashboard.php?p=logout" tabindex="3">Logout</a>
+              <a href="dashboard.php?p=report" tabindex="3">History</a>
+              <a href="dashboard.php?p=logout" tabindex="4">Logout</a>
             </div>
           </div>
         </div>

@@ -31,7 +31,7 @@ if (isset($_POST["bayar"]) && isset($_GET["kodeTransaksi"])) {
   $Transaksi->updateTransacationStatus();
 
   if ($Transaksi->result) {
-    echo '<script> window.location="dashboard.php?p=checkout&kodeTransaksi=' . $kodeTransaksi . '"; </script>';
+    echo '<script> window.location="dashboard.php?p=payment"; </script>';
   } else {
     echo "<script> alert('Gagal untuk melakukan pembayaran'); </script>";
   }

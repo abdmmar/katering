@@ -116,11 +116,40 @@ class Transaksi extends Connection
     return $arrayTransaction;
   }
 
+  public function getAllFinishTransactionPembeli()
+  {
+    $this->connect();
+    $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
+    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli AND $this->COLUMN_STATUS = 'finish'";
+
+    $result = mysqli_query($this->connection, $sql);
+    $arrayTransaction = array();
+    $count = 0;
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($data = mysqli_fetch_array($result)) {
+        $Transaksi = new Transaksi();
+        $Transaksi->kodeTransaksi = $data[$this->COLUMN_KODETRANSAKSI];
+        $Transaksi->IDpembeli = $data[$this->COLUMN_IDPEMBELI];
+        $Transaksi->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
+        $Transaksi->totalHarga = $data[$this->COLUMN_TOTALHARGA];
+        $Transaksi->status = $data[$this->COLUMN_STATUS];
+        $arrayTransaction[$count] = $Transaksi;
+        $count++;
+      }
+      $this->result = true;
+    } else {
+      $this->message = 'Belum ada transaksi yang selesai nih!';
+    }
+
+    return $arrayTransaction;
+  }
+
   public function getTransactionPayment()
   {
     $this->connect();
     $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
-    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli AND $this->COLUMN_STATUS = 'inChart'";
+    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli AND $this->COLUMN_STATUS = 'pendingPayment'";
 
     $result = mysqli_query($this->connection, $sql);
 

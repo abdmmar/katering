@@ -167,6 +167,16 @@ input[type="submit"]:hover {
   background-color: var(--darker-green);
 }
 
+.beli:disabled {
+  background-color: #dfdfdf;
+  color: #767676;
+}
+
+.beli:disabled:hover {
+  background-color: #dfdfdf;
+  color: #767676;
+}
+
 .empty-list-item {
   display: flex;
   flex-direction: column;

@@ -21,8 +21,10 @@ if (isset($_SESSION["IDpembeli"])) {
         <p class="total">
           <span>
             <?php
-            $formatter = new NumberFormatter('in_ID',  NumberFormatter::CURRENCY);
-            echo $formatter->formatCurrency($totalPembayaran, 'IDR') . PHP_EOL;
+            if ($totalPembayaran > 0) {
+              $formatter = new NumberFormatter('in_ID',  NumberFormatter::CURRENCY);
+              echo $formatter->formatCurrency($totalPembayaran, 'IDR') . PHP_EOL;
+            }
             ?>
           </span>
         </p>
