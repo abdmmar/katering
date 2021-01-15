@@ -172,6 +172,41 @@ class Transaksi extends Connection
     return $arrayTransaction;
   }
 
+  public function getShipmentTransaction()
+  {
+    $this->connect();
+    $sql = "SELECT t.kodetransaksi, t.IDpembeli, t.tanggal_transaksi, 
+    t.total_harga, t.status, p.nama, p.telepon, a.alamat 
+    FROM transaksi AS t INNER JOIN pembeli as p ON p.IDpembeli = t.IDpembeli 
+    INNER JOIN alamat_pembeli as a ON a.IDpembeli = p.IDpembeli 
+    WHERE t.$this->COLUMN_IDPEMBELI = $this->IDpembeli AND t.$this->COLUMN_STATUS = 'paid' OR t.$this->COLUMN_STATUS = 'inDelivery'";
+
+    $result = mysqli_query($this->connection, $sql);
+    $arrayTransaction = array();
+    $count = 0;
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($data = mysqli_fetch_array($result)) {
+        $Transaksi = new Transaksi();
+        $Transaksi->kodeTransaksi = $data[$this->COLUMN_KODETRANSAKSI];
+        $Transaksi->IDpembeli = $data[$this->COLUMN_IDPEMBELI];
+        $Transaksi->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
+        $Transaksi->totalHarga = $data[$this->COLUMN_TOTALHARGA];
+        $Transaksi->status = $data[$this->COLUMN_STATUS];
+        $Transaksi->nama = $data[$this->COLUMN_NAMA];
+        $Transaksi->telepon = $data[$this->COLUMN_TELEPON];
+        $Transaksi->alamat = $data[$this->COLUMN_ALAMAT];
+        $arrayTransaction[$count] = $Transaksi;
+        $count++;
+      }
+      $this->result = true;
+    } else {
+      $this->message = 'Belum ada transaksi yang selesai nih!';
+    }
+
+    return $arrayTransaction;
+  }
+
   public function getTransactionPayment()
   {
     $this->connect();
