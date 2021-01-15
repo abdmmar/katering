@@ -32,9 +32,16 @@ if (isset($_SESSION["IDpembeli"])) {
 
       <p>Silahkan hubungi penjual untuk melakukan pembayaran.</p>
       <div>
-        <a href="https://wa.me/6285694550045" target="_blank">
-          <button>Hubungi Penjual</button>
-        </a>
+        <?php
+        $Penjual = new Penjual();
+        $Penjual->getInfoPenjual();
+
+        if ($Penjual->result) {
+          echo '<a href="https://wa.me/62' . ltrim($Penjual->telepon, "0") . '" target="_blank">';
+          echo '  <button>Hubungi Penjual</button>';
+          echo '</a>';
+        }
+        ?>
       </div>
     </div>
   </div>

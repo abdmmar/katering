@@ -8,6 +8,10 @@ class Transaksi extends Connection
   public $totalHarga = '';
   public $status = '';
 
+  public $nama = '';
+  public $alamat = '';
+  public $telepon = '';
+
   public $result = false;
   public $message = '';
   public $count = 0;
@@ -19,6 +23,10 @@ class Transaksi extends Connection
   public $COLUMN_TGLTRANSAKSI = 'tanggal_transaksi';
   public $COLUMN_TOTALHARGA = 'total_harga';
   public $COLUMN_STATUS = 'status';
+
+  public $COLUMN_NAMA = 'nama';
+  public $COLUMN_TELEPON = 'telepon';
+  public $COLUMN_ALAMAT = 'alamat';
 
   public function addTransaction()
   {
@@ -43,11 +51,11 @@ class Transaksi extends Connection
   {
     $this->connect();
     $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
-    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli";
+    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli ORDER BY $this->COLUMN_KODETRANSAKSI DESC";
 
     $result = mysqli_query($this->connection, $sql);
 
-    if (mysqli_num_rows($result) == 1) {
+    if (mysqli_num_rows($result) > 0) {
       $this->result = true;
       $data = mysqli_fetch_assoc($result);
       $this->kodeTransaksi = $data[$this->COLUMN_KODETRANSAKSI];
@@ -61,8 +69,12 @@ class Transaksi extends Connection
   public function getAllTransactionPayment()
   {
     $this->connect();
-    $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
-    WHERE $this->COLUMN_IDPENJUAL = $this->IDpenjual AND NOT $this->COLUMN_STATUS = 'inChart' AND NOT $this->COLUMN_STATUS = 'finish'";
+
+    $sql = "SELECT t.kodetransaksi, t.IDpembeli, t.tanggal_transaksi, 
+      t.total_harga, t.status, p.nama, p.telepon, a.alamat 
+      FROM transaksi AS t INNER JOIN pembeli as p ON p.IDpembeli = t.IDpembeli 
+      INNER JOIN alamat_pembeli as a ON a.IDpembeli = p.IDpembeli 
+      WHERE t.$this->COLUMN_IDPENJUAL = $this->IDpenjual AND NOT t.$this->COLUMN_STATUS = 'inChart' AND NOT t.$this->COLUMN_STATUS = 'finish'";
 
     $result = mysqli_query($this->connection, $sql);
     $arrayTransaction = array();
@@ -76,6 +88,9 @@ class Transaksi extends Connection
         $Transaksi->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
         $Transaksi->totalHarga = $data[$this->COLUMN_TOTALHARGA];
         $Transaksi->status = $data[$this->COLUMN_STATUS];
+        $Transaksi->nama = $data[$this->COLUMN_NAMA];
+        $Transaksi->telepon = $data[$this->COLUMN_TELEPON];
+        $Transaksi->alamat = $data[$this->COLUMN_ALAMAT];
         $arrayTransaction[$count] = $Transaksi;
         $count++;
       }
@@ -90,8 +105,11 @@ class Transaksi extends Connection
   public function getAllFinishTransaction()
   {
     $this->connect();
-    $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
-    WHERE $this->COLUMN_IDPENJUAL = $this->IDpenjual AND $this->COLUMN_STATUS = 'finish'";
+    $sql = "SELECT t.kodetransaksi, t.IDpembeli, t.tanggal_transaksi, 
+    t.total_harga, t.status, p.nama, p.telepon, a.alamat 
+    FROM transaksi AS t INNER JOIN pembeli as p ON p.IDpembeli = t.IDpembeli 
+    INNER JOIN alamat_pembeli as a ON a.IDpembeli = p.IDpembeli 
+    WHERE t.$this->COLUMN_IDPENJUAL = $this->IDpenjual AND t.$this->COLUMN_STATUS = 'finish'";
 
     $result = mysqli_query($this->connection, $sql);
     $arrayTransaction = array();
@@ -105,6 +123,9 @@ class Transaksi extends Connection
         $Transaksi->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
         $Transaksi->totalHarga = $data[$this->COLUMN_TOTALHARGA];
         $Transaksi->status = $data[$this->COLUMN_STATUS];
+        $Transaksi->nama = $data[$this->COLUMN_NAMA];
+        $Transaksi->telepon = $data[$this->COLUMN_TELEPON];
+        $Transaksi->alamat = $data[$this->COLUMN_ALAMAT];
         $arrayTransaction[$count] = $Transaksi;
         $count++;
       }
@@ -119,8 +140,11 @@ class Transaksi extends Connection
   public function getAllFinishTransactionPembeli()
   {
     $this->connect();
-    $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
-    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli AND $this->COLUMN_STATUS = 'finish'";
+    $sql = "SELECT t.kodetransaksi, t.IDpembeli, t.tanggal_transaksi, 
+    t.total_harga, t.status, p.nama, p.telepon, a.alamat 
+    FROM transaksi AS t INNER JOIN pembeli as p ON p.IDpembeli = t.IDpembeli 
+    INNER JOIN alamat_pembeli as a ON a.IDpembeli = p.IDpembeli 
+    WHERE t.$this->COLUMN_IDPEMBELI = $this->IDpembeli AND t.$this->COLUMN_STATUS = 'finish'";
 
     $result = mysqli_query($this->connection, $sql);
     $arrayTransaction = array();
@@ -134,6 +158,9 @@ class Transaksi extends Connection
         $Transaksi->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
         $Transaksi->totalHarga = $data[$this->COLUMN_TOTALHARGA];
         $Transaksi->status = $data[$this->COLUMN_STATUS];
+        $Transaksi->nama = $data[$this->COLUMN_NAMA];
+        $Transaksi->telepon = $data[$this->COLUMN_TELEPON];
+        $Transaksi->alamat = $data[$this->COLUMN_ALAMAT];
         $arrayTransaction[$count] = $Transaksi;
         $count++;
       }

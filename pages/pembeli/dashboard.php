@@ -1,6 +1,7 @@
 <?php
 require_once('./authorization.php');
 require "../../inc.connection.php";
+require('../../class/class.Penjual.php');
 
 $title = 'Hena Katering';
 $keyword = '';
@@ -92,8 +93,6 @@ if (isset($_GET['p'])) {
       <h3>Hena Katering</h3>
       <div class="footer-desc">
         <?php
-        require('../../class/class.Penjual.php');
-
         $Penjual = new Penjual();
         $Penjual->getInfoPenjual();
 

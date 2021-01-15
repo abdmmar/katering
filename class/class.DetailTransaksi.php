@@ -5,6 +5,9 @@ class DetailTransaksi extends Connection
   public $kodeTransaksi = 0;
   public $jmlMenu = 1;
 
+  public $nama = '';
+  public $harga = 0;
+
   public $result = false;
   public $message = '';
 
@@ -12,6 +15,8 @@ class DetailTransaksi extends Connection
   public $COLUMN_MENUID = 'menuID';
   public $COLUMN_KODETRANSAKSI = 'kodetransaksi';
   public $COLUMN_JMLMENU = 'jmlmenu';
+  public $COLUMN_NAMA = 'nama';
+  public $COLUMN_HARGA = 'harga';
 
   public function addDetailTransaction()
   {
@@ -36,7 +41,7 @@ class DetailTransaksi extends Connection
   {
     $this->connect();
     $sql = "SELECT * FROM $this->TABLE_DETAILTRANSAKSI 
-            WHERE $this->COLUMN_MENUID = $this->menuID";
+            WHERE $this->COLUMN_MENUID = $this->menuID AND $this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi";
 
     $result = mysqli_query($this->connection, $sql);
 
@@ -52,7 +57,11 @@ class DetailTransaksi extends Connection
   public function getAllMenuByKodeTransaksi()
   {
     $this->connect();
-    $sql = "SELECT * FROM $this->TABLE_DETAILTRANSAKSI WHERE $this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi";
+    $sql = "SELECT d.*, m.nama, m.harga 
+    FROM detail_transaksi as d 
+    INNER JOIN menu as m ON m.menuID = d.menuID 
+    WHERE d.$this->COLUMN_KODETRANSAKSI = $this->kodeTransaksi";
+
     $result = mysqli_query($this->connection, $sql);
     $arrayMenu = array();
     $count = 0;
@@ -63,6 +72,8 @@ class DetailTransaksi extends Connection
         $DetailTransaksi->menuID = $data[$this->COLUMN_MENUID];
         $DetailTransaksi->kodeTransaksi = $data[$this->COLUMN_KODETRANSAKSI];
         $DetailTransaksi->jmlMenu = $data[$this->COLUMN_JMLMENU];
+        $DetailTransaksi->nama = $data[$this->COLUMN_NAMA];
+        $DetailTransaksi->harga = $data[$this->COLUMN_HARGA];
         $arrayMenu[$count] = $DetailTransaksi;
         $count++;
       }

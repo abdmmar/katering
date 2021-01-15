@@ -11,6 +11,7 @@ if (isset($_SESSION["IDpembeli"])) {
   $Transaksi = new Transaksi();
   $Transaksi->IDpembeli = $_SESSION["IDpembeli"];
   $Transaksi->getOneTransaction();
+
   if ($Transaksi->status == 'inChart') {
     $DetailTransaksi = new DetailTransaksi();
     $DetailTransaksi->kodeTransaksi = $Transaksi->kodeTransaksi;

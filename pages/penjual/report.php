@@ -32,8 +32,8 @@ if (isset($_SESSION["IDpenjual"])) {
             echo '<tr class="transaction-item" id="' . $key . '">';
             echo '<td>' . $transaksi->kodeTransaksi . '</td>';
             echo '<td>' . $transaksi->tanggalTransaksi . '</td>';
-            echo '<td>' . $transaksi->IDpembeli . '</td>';
-            echo '<td>Margonda, Depok</td>';
+            echo '<td>' . $transaksi->nama . '</td>';
+            echo '<td>' . $transaksi->alamat . '</td>';
 
             echo '<td class="tr-item-list-menu">';
             echo '  <ul>';
@@ -42,7 +42,7 @@ if (isset($_SESSION["IDpenjual"])) {
             $DetailTransaksi->kodeTransaksi = $transaksi->kodeTransaksi;
             $arrayMenu = $DetailTransaksi->getAllMenuByKodeTransaksi();
             foreach ($arrayMenu as $key => $menu) {
-              echo '    <li>' . $menu->menuID . '</li>';
+              echo '    <li>' . $menu->nama . '</li>';
             }
 
             echo '  </ul>';
