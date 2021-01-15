@@ -159,6 +159,12 @@ header {
   z-index: 1;
 }
 
+.dropdown-content div {
+  display: block;
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+}
+
 .dropdown-content a,
 .dropdown-content h4 {
   margin: 0;
@@ -186,4 +192,16 @@ header {
 
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
+}
+
+.dropdown-profile {
+  display: block !important;
+  background-color: #ffffe5;
+}
+
+.dropdown-profile-info {
+  border: none !important;
+  color: #767676;
+  font-size: 14px;
+  margin: 5px 15px 10px;
 }

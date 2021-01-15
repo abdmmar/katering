@@ -54,12 +54,21 @@ if (isset($_GET['p'])) {
           </div>
           <div class="dropdown" style="float: right">
             <div class="dropdown-content">
-              <h4><?php echo $_SESSION["nama"] ?></h4>
-              <a href="dashboard.php?p=profile" tabindex="1">Profile</a>
-              <a href="dashboard.php?p=payment" tabindex="2">Pembayaran</a>
-              <a href="dashboard.php?p=shipment" tabindex="3">Pengiriman</a>
-              <a href="dashboard.php?p=report" tabindex="4">History</a>
-              <a href="dashboard.php?p=logout" tabindex="5">Logout</a>
+              <div class="dropdown-profile">
+                <h4><?php echo $_SESSION["nama"] ?></h4>
+                <div class="dropdown-profile-info">
+                  <span><?php echo $_SESSION["email"] ?></span>
+                </div>
+              </div>
+              <div>
+                <a href="dashboard.php?p=payment" tabindex="1">Pembayaran</a>
+                <a href="dashboard.php?p=shipment" tabindex="2">Pengiriman</a>
+                <a href="dashboard.php?p=report" tabindex="3">History</a>
+              </div>
+              <div>
+                <a href="dashboard.php?p=profile" tabindex="4">Profile</a>
+                <a href="dashboard.php?p=logout" tabindex="5">Logout</a>
+              </div>
             </div>
           </div>
         </div>

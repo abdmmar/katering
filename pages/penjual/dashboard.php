@@ -84,7 +84,12 @@ if (isset($_GET['p'])) {
           </div>
           <div class="dropdown" style="float: right">
             <div class="dropdown-content">
-              <h4><?php echo $_SESSION["nama"] ?></h4>
+              <div class="dropdown-profile">
+                <h4><?php echo $_SESSION["nama"] ?></h4>
+                <div class="dropdown-profile-info">
+                  <span><?php echo $_SESSION["email"] ?></span>
+                </div>
+              </div>
               <a href="dashboard.php?p=profile&IDpenjual=<?php echo $_SESSION["IDpenjual"] ?>" tabindex="1">Profile</a>
               <a href="dashboard.php?p=logout" tabindex="2">Logout</a>
             </div>

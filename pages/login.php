@@ -45,6 +45,7 @@ if (isset($_POST["submit"])) {
 
       $_SESSION["IDpembeli"] = $Pembeli->IDpembeli;
       $_SESSION["nama"] = $Pembeli->nama;
+      $_SESSION["telepon"] = $Pembeli->telepon;
       $_SESSION["email"] = $Pembeli->email;
 
       echo "<script> alert('Login sukses!'); </script>";
