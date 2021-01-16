@@ -15,12 +15,12 @@ if (isset($_POST["IDpenjual"])) {
 
   $Transaksi = new Transaksi();
   $Transaksi->IDpembeli = $IDpembeli;
-  $Transaksi->getOneTransaction();
+  $Transaksi->getOneTransactionInChart();
 
-  if ($Transaksi->status == 'inChart') {
+  if ($Transaksi->result) {
     $DetailTransaksi = new DetailTransaksi();
     $DetailTransaksi->menuID = $menuID;
-    $DetailTransaksi->menuID = $Transaksi->kodeTransaksi;
+    $DetailTransaksi->kodeTransaksi = $Transaksi->kodeTransaksi;
     $DetailTransaksi->getMenu();
 
     if ($DetailTransaksi->result) {

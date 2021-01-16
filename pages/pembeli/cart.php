@@ -10,9 +10,9 @@ $kodeTransaksi = 0;
 if (isset($_SESSION["IDpembeli"])) {
   $Transaksi = new Transaksi();
   $Transaksi->IDpembeli = $_SESSION["IDpembeli"];
-  $Transaksi->getOneTransaction();
+  $Transaksi->getOneTransactionInChart();
 
-  if ($Transaksi->status == 'inChart') {
+  if ($Transaksi->result) {
     $DetailTransaksi = new DetailTransaksi();
     $DetailTransaksi->kodeTransaksi = $Transaksi->kodeTransaksi;
     $kodeTransaksi = $Transaksi->kodeTransaksi;

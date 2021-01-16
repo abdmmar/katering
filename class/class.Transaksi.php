@@ -66,6 +66,25 @@ class Transaksi extends Connection
     }
   }
 
+  public function getOneTransactionInChart()
+  {
+    $this->connect();
+    $sql = "SELECT * FROM $this->TABLE_TRANSAKSI 
+    WHERE $this->COLUMN_IDPEMBELI = $this->IDpembeli AND $this->COLUMN_STATUS = 'inChart'";
+
+    $result = mysqli_query($this->connection, $sql);
+
+    if (mysqli_num_rows($result) == 1) {
+      $this->result = true;
+      $data = mysqli_fetch_assoc($result);
+      $this->kodeTransaksi = $data[$this->COLUMN_KODETRANSAKSI];
+      $this->tanggalTransaksi = $data[$this->COLUMN_TGLTRANSAKSI];
+      $this->IDpenjual = $data[$this->COLUMN_IDPENJUAL];
+      $this->totalHarga = $data[$this->COLUMN_TOTALHARGA];
+      $this->status = $data[$this->COLUMN_STATUS];
+    }
+  }
+
   public function getAllTransactionPayment()
   {
     $this->connect();
